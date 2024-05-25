@@ -10,47 +10,31 @@
                                     class="w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0">
 
                                 </img>
-                                <h1 class="text-xl font-bold">Nguyễn Tất Niên</h1>
-                                <p class="text-gray-700">samseng.shop</p>
+                                <h1 class="text-xl font-bold">John Doe</h1>
+                                <p class="text-gray-700">Software Developer</p>
                                 <div class="mt-6 flex flex-wrap gap-4 justify-center">
-                                    <button @click="handleLogout()"
-                                        class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
-                                        Đăng xuất
-                                    </button>
-                                    <!-- <a href="#"
-                                        class="bg-gray-300 hover:bg-gray-400 text-gray-700 py-2 px-4 rounded">
-                                        Đổi mật khẩu
-                                    </a> -->
+                                    <a href="#"
+                                        class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">Contact</a>
+                                    <a href="#"
+                                        class="bg-gray-300 hover:bg-gray-400 text-gray-700 py-2 px-4 rounded">Resume</a>
                                 </div>
                             </div>
                             <hr class="my-6 border-t border-gray-300">
                             <div class="flex flex-col">
-                                <span class="text-gray-700 uppercase font-bold tracking-wider mb-2">
-                                    Danh mục
-                                </span>
+                                <span class="text-gray-700 uppercase font-bold tracking-wider mb-2">Skills</span>
                                 <ul>
-                                    <li class="mb-2 hover:underline hover:cursor-pointer">
-                                        Chờ duyệt
-                                    </li>
-                                    <li class="mb-2 hover:underline hover:cursor-pointer">
-                                        Đang giao
-                                    </li>
-                                    <li class="mb-2 hover:underline hover:cursor-pointer">
-                                        Đã giao
-                                    </li>
-                                    <li class="mb-2 hover:underline hover:cursor-pointer">
-                                        Đơn bị hủy
-                                    </li>
-                                    <li class="mb-2 hover:underline hover:cursor-pointer">
-                                        Thất bại
-                                    </li>
+                                    <li class="mb-2">JavaScript</li>
+                                    <li class="mb-2">React</li>
+                                    <li class="mb-2">Node.js</li>
+                                    <li class="mb-2">HTML/CSS</li>
+                                    <li class="mb-2">Tailwind Css</li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <div class="col-span-4 sm:col-span-9">
-                        <div class="bg-white shadow rounded-lg p-6 min-h-[100vh]">
-                            <IndexSuggestedProducts header="" :dataSuggestedProducts="null" />
+                        <div class="bg-white shadow rounded-lg p-6">
+                            <IndexSuggestedProducts/>
                         </div>
                     </div>
                 </div>
@@ -58,23 +42,3 @@
         </div>
     </div>
 </template>
-<script lang="js">
-import Cookies from "js-cookie";
-export default defineNuxtComponent({
-    created() {
-
-        const isLogin = Cookies.get('isLogin');
-        console.log(isLogin);
-    },
-    methods: {
-        handleLogout() {
-            if (confirm('Bạn đang đăng xuất?')) {
-                Cookies.remove("isLogin");
-                Cookies.remove("SSID");
-                this.$router.push("/");
-            }
-
-        }
-    },
-})
-</script>
