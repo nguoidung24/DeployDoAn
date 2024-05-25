@@ -23,11 +23,11 @@
             <div class="absolute top-16 left-2/4 -translate-x-2/4 z-50 text-center w-full">
                 <p class="font-bold text-4xl">{{ data?.title }}</p>
 
-                <div class="mt-8">
+                <div class="mt-5">
                     <p class=" text-lg " v-for="(item, index) in data?.text?.split('$tach_ra$')">{{ item }}</p>
                 </div>
 
-                <NuxtLink to="/product?id=1" class="inline-block mt-8 bg-black text-white rounded-3xl px-5 py-2 font-mono">
+                <NuxtLink to="/product?id=1" class="inline-block mt-5 bg-black text-white rounded-3xl px-5 py-2 font-mono">
                     {{ data?.button }}
                 </NuxtLink>
 
