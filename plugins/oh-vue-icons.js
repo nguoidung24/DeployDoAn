@@ -6,10 +6,6 @@ import {
     HiSearch,
     MdKeyboarddoublearrowleftTwotone,
     ViFileTypeIonic,
-    MdArrowdropupTwotone,
-    GiArchiveResearch,
-    IoStar,
-    FaRegularStar,
 
 } from "oh-vue-icons/icons";
 
@@ -19,10 +15,6 @@ addIcons(FaFlag,
     HiSearch,
     MdKeyboarddoublearrowleftTwotone,
     ViFileTypeIonic,
-    MdArrowdropupTwotone,
-    GiArchiveResearch,
-    IoStar,
-    FaRegularStar,
 );
 
 export default defineNuxtPlugin((nuxtApp) => {
