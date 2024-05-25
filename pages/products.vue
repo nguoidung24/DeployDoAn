@@ -66,7 +66,7 @@
             <!-- Product grid -->
             <div class="mt-6 lg:border-l lg:ps-5  lg:col-span-4 lg:mt-0 xl:col-span-5 ">
               <!-- ================================ DANH MUC ================================== -->
-
+              <ProductsCategories :filters="filters" :handleChangeFilters="handleChangeFilters" v-if="displayCategory"  />
 
               <div v-if="!displayCategory">
                 <button type="button" class=" lg:inline-flex ms-5 items-center hidden" @click="handleDisplayCategory()">
