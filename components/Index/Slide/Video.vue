@@ -8,7 +8,7 @@
                 <div class="mt-8">
                     <p class=" lg:text-xl text-lg" v-for="(item, index) in data?.text?.split('$tach_ra$')">{{ item }}</p>
                 </div>
-                <NuxtLink to="/product/1" class="inline-block mt-8 bg-black text-white rounded-3xl px-5 py-2 font-mono">
+                <NuxtLink to="/product?id=1" class="inline-block mt-8 bg-black text-white rounded-3xl px-5 py-2 font-mono">
                     {{ data?.button }}
                 </NuxtLink>
             </div>
@@ -26,7 +26,7 @@
                     <p class=" text-lg " v-for="(item, index) in data?.text?.split('$tach_ra$')">{{ item }}</p>
                 </div>
 
-                <NuxtLink to="/product/1" class="inline-block mt-8 bg-black text-white rounded-3xl px-5 py-2 font-mono">
+                <NuxtLink to="/product?id=1" class="inline-block mt-8 bg-black text-white rounded-3xl px-5 py-2 font-mono">
                     {{ data?.button }}
                 </NuxtLink>
             </div>
