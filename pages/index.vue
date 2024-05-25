@@ -19,8 +19,9 @@
             <IndexMonopolyProduct :dataIndexMonopolyProducts="dataIndexMonopolyProducts" />
 
             <IndexBigSlide :dataBigSlider="dataBigSlider" />
-
-            <IndexSuggestedProducts :dataSuggestedProducts="dataSuggestedProducts" header="Gợi ý dành cho bạn" />
+            <div class="lg:px-32">
+                <IndexSuggestedProducts :dataSuggestedProducts="dataSuggestedProducts" header="Gợi ý dành cho bạn" />
+            </div>
         </div>
         <!-- ================================== END ================================== -->
 
