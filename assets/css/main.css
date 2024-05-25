@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.no-tailwind * {
+  all: unset;
+  text-align: justify;
+}
+
+.no-tailwind img {
+  width: 100%;
+}
+
+.no-tailwind table {
+  width: 100%;
+}
+
+.no-tailwind p {
+  display: block;
+  margin: 1em 0;
+}
+
+.no-tailwind a {
+  cursor: pointer;
+  color: blue;
+  text-decoration: underline;
+}
+
+.no-tailwind ul {
+  list-style: disc;
+  margin: 1em 0;
+  padding-left: 40px;
+}
+
+.no-tailwind li {
+  display: list-item;
+}
+
+.no-tailwind h1,
+.no-tailwind h2,
+.no-tailwind h3,
+.no-tailwind h4,
+.no-tailwind h5,
+.no-tailwind h6 {
+  display: block;
+  font-weight: bold;
+  margin: 0.67em 0;
+}
+
+.no-tailwind ol {
+  display: block;
+  list-style-type: decimal;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 40px;
+}
+
+.no-tailwind sup {
+  vertical-align: super;
+  font-size: smaller;
+}
+
+.no-tailwind table {
+  display: table;
+  border-collapse: separate;
+  border-spacing: 2px;
+  border-color: gray;
+}
+
+.no-tailwind tbody {
+  display: table-row-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+
+.no-tailwind td {
+  display: table-cell;
+  vertical-align: inherit;
+}
+
+.no-tailwind th {
+  display: table-cell;
+  vertical-align: inherit;
+  font-weight: bold;
+  text-align: center;
+}
+
+.no-tailwind thead {
+  display: table-header-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+
+.no-tailwind tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+
+.no-tailwind u {
+  text-decoration: underline;
+}
+
+.no-tailwind i {
+  font-style: italic;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+body {
+  overflow-x: auto !important;
+}
+
+body::-webkit-scrollbar {
+  width: 8px !important;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background-color:  rgb(46, 29, 109);
+  cursor: grabbing;
+}
+
+body::-webkit-scrollbar-track {
+  /* background-color: transparent !important; */
+  background-color: rgb(209, 201, 255) !important;
+
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgb(46, 29, 109);
+  border-radius: 5px !important;
+}
