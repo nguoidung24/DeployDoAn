@@ -64,7 +64,7 @@
                             <!-- THAY PRODUCT_ID THÀNH GROUP_ID 25/5/2024 -->
                             <div class="px-3 text-center pb-4">
                                 <NuxtLink :to="`/product?id=${item.group_id}`"
-                                    class="font-mono inline-block bg-black text-white w-[68%] py-1 rounded-3xl">
+                                    class="font-mono inline-block px-5 mx-auto bg-black text-white text-[14px] py-1 rounded-3xl">
                                     Xem ngay
                                 </NuxtLink to="">
                             </div>
