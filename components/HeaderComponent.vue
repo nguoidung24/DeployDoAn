@@ -73,7 +73,7 @@
                         class="text-center text-white font-semibold text-2xl w-full absolute -top-full left-2/4 -translate-x-2/4">
                         Samseng Sẽ Giúp Bạn Tìm Kiếm
                     </p>
-                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                    <div class="absolute inset-y-0 start-0 flex items-center ps-5 pointer-events-none">
                         <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true"
                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
