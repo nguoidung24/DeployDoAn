@@ -12,6 +12,7 @@
   "dependencies": {
     "@tailwindcss/forms": "^0.5.7",
     "@vueuse/motion": "^2.1.0",
+    "js-cookie": "^3.0.5",
     "nuxt": "^3.11.2",
     "oh-vue-icons": "^1.0.0-rc3",
     "pinia": "^2.1.7",
