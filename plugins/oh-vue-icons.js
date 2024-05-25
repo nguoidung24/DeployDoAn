@@ -1,6 +1,5 @@
 import { OhVueIcon, addIcons } from "oh-vue-icons";
 import {
-    FaFlag,
     FaUser,
     MdShoppingcart,
     HiSearch,
@@ -9,11 +8,11 @@ import {
     MdArrowdropupTwotone,
     GiArchiveResearch,
     IoStar,
-    FaRegularStar,
+    FaRegularStar
 
 } from "oh-vue-icons/icons";
 
-addIcons(FaFlag,
+addIcons(
     FaUser,
     MdShoppingcart,
     HiSearch,
@@ -22,7 +21,7 @@ addIcons(FaFlag,
     MdArrowdropupTwotone,
     GiArchiveResearch,
     IoStar,
-    FaRegularStar,
+    FaRegularStar
 );
 
 export default defineNuxtPlugin((nuxtApp) => {
