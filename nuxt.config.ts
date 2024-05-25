@@ -29,5 +29,5 @@ export default defineNuxtConfig({
       autoprefixer: {},
     },
   },
-  plugins: ["~/plugins/oh-vue-icons.js",'~/plugins/pinia'],
+  plugins: ['~/plugins/pinia'],
 })
