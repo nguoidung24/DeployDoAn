@@ -8,7 +8,6 @@ import {
     ViFileTypeIonic,
     FaRegularStar,
     IoStar,
-    GiArchiveResearch
 
 } from "oh-vue-icons/icons";
 
@@ -20,7 +19,6 @@ addIcons(FaFlag,
     ViFileTypeIonic,
     FaRegularStar,
     IoStar,
-    GiArchiveResearch
 );
 
 export default defineNuxtPlugin((nuxtApp) => {
