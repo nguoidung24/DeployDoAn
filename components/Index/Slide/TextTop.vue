@@ -11,7 +11,7 @@
                     <p class="mt-3 text-lg" v-for="(item, index ) in data?.text?.split('$tach_ra$')" key="index">{{ item }}</p>
                 </div>
 
-                <NuxtLink to="/product/1169673124" class="inline-block mt-6 bg-black text-white rounded-3xl px-5 py-2 font-mono">
+                <NuxtLink to="/product?id=1169673124" class="inline-block mt-6 bg-black text-white rounded-3xl px-5 py-2 font-mono">
                     {{ data?.button }}
                 </NuxtLink>
             </div>
@@ -30,7 +30,7 @@
                 <div>
                     <p class="mt-5 text-lg" v-for="(item, index ) in data?.text?.split('$tach_ra$')">{{ item }}</p>
                 </div>
-                <NuxtLink to="/product/1169673124" class="inline-block mt-10 bg-black text-white rounded-3xl px-5 py-2 font-mono">
+                <NuxtLink to="/product?id=1169673124" class="inline-block mt-10 bg-black text-white rounded-3xl px-5 py-2 font-mono">
                     {{ data?.button }}
                 </NuxtLink>
             </div>
