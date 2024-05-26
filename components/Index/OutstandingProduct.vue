@@ -45,7 +45,7 @@
                             <div class="w-full h-full peer/a absolute top-0 left-0">
                             </div>
 
-                            <NuxtLink to="/"
+                            <NuxtLink :to="item?.button_link"
                                 class="absolute font-mono -bottom-full peer/btn peer-hover/a:bottom-10 hover:bottom-10 left-2/4 bg-black text-white lg:px-10 px-5 rounded-3xl lg:w-fit lg:text-base w-[70%] text-[13px] text-center duration-500 py-3 -translate-x-2/4">
                                 {{ item?.button }}
                             </NuxtLink>
@@ -62,13 +62,13 @@
                                 <img :src="baseImageURL + value" alt="">
                                 <div class="w-full h-full peer/a absolute top-0 left-0">
                                 </div>
-                                <NuxtLink to="/"
+                                <NuxtLink :to="item?.small_button_link?.split('$tach_ra$')[key]"
                                     class="absolute font-mono -bottom-full peer/btn peer-hover/a:bottom-10 hover:bottom-10 left-2/4 bg-black text-white  px-5 rounded-3xl lg:w-fit  w-[70%] text-[13px] text-center duration-500 py-3 -translate-x-2/4">
                                     {{ item?.button }}
                                 </NuxtLink>
                                 <p
                                     class="absolute z-0 lg:bottom-10 transition-all duration-200 peer-hover/a:-bottom-full hover:-bottom-full peer-hover/btn:-bottom-full bottom-2 text-center font-bold lg:text-sm md:text-sm text-[12.5px] w-full lg:px-16 md:px-7 px-5 left-2/4 -translate-x-2/4">
-                                    {{ item?.smaill_text.split('$tach_ra$')[key] }}
+                                    {{ item?.smaill_text?.split('$tach_ra$')[key] }}
                                 </p>
                             </figure>
                         </div>
