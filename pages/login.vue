@@ -12,7 +12,7 @@
                    <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                       <h1
                          class="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
-                         Đăng nhập tài khoản của bạn
+                         Đăng nhập tài khoản
                       </h1>
                       <div class="space-y-4 md:space-y-6" action="#">
                          <div>
@@ -50,7 +50,14 @@
                             class="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             Đăng Nhập
                          </button>
- 
+                         <button class="flex dark:text-gray-400 text-gray-700 justify-center gap-2 items-center w-full">
+                           <span class="h-1 w-20 inline-block border-b dark:border-gray-400 border-gray-700"></span> 
+                           Hoặc
+                           <span class="h-1 w-20 inline-block border-b dark:border-gray-400 border-gray-700"></span> 
+                         </button>
+                         <NuxtLink class="text-center hover:bg-gray-600 text-sm font-semibold bg-gray-500 text-white py-2 rounded-xl block" to="/">
+                           Trang Chủ 🏠
+                         </NuxtLink>
                       </div>
                    </div>
                 </div>
