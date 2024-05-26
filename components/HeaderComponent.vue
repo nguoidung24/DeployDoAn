@@ -35,7 +35,7 @@
                             <v-icon name="md-shoppingcart" />
                             <span
                                 class="absolute bg-red-600 text-white -right-3 -top-2 text-[13px] size-5 flex justify-center items-center rounded-full">
-                                9+
+                                {{Number(totalCartItems) > 9 ? '9+' : totalCartItems }}
                             </span>
                         </NuxtLink>
                         <NuxtLink to="/user">
@@ -118,8 +118,16 @@ export default defineNuxtComponent({
         return {
             isSearch: false,
             searchValue: "",
-            dataMenu
+            dataMenu,
+            totalCartItems:0
         }
+    },
+    async created() {
+        const dataCart = (await useGetCart()).value
+        const list = dataCart.listCart.cart;
+        const totalAmount = dataCart.listCart.totalAmount;
+        this.totalCartItems = dataCart.listCart.cart.data.length
+
     },
     methods: {
         onMenuToggle(e) {
