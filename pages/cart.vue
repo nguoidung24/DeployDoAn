@@ -19,7 +19,7 @@
                         class="col-span-12 xl:col-span-8 lg:pr-8 pt-14 pb-8 lg:py-24 w-full max-xl:max-w-3xl max-xl:mx-auto">
                         <div class="flex items-center justify-between pb-8 border-b border-gray-300">
                             <h2 class="font-manrope font-bold text-3xl leading-10 text-black">Giỏi Hàng</h2>
-                            <h2 class="font-manrope font-bold text-xl leading-8 text-gray-600">{{ dataCart?.length }}
+                            <h2 class="font-manrope font-bold text-xl leading-8 text-gray-600">{{ totalItems }}
                                 Sản phẩm</h2>
                         </div>
                         <div class="grid grid-cols-12 mt-8 max-md:hidden pb-6 border-b border-gray-200">
@@ -49,18 +49,18 @@
                                             {{ item?.product?.product_name }}
                                         </h6>
                                         <h6 class="font-normal text-base leading-7 text-gray-500">
-                                            Giá: {{ Number(item.price).toLocaleString() }} vnđ
+                                            Giá: {{ Number(item?.price).toLocaleString() }} vnđ
                                         </h6>
                                         <h6
                                             class="font-medium text-base leading-7 text-gray-600 transition-all duration-300 group-hover:text-indigo-600">
-                                            Tổng: {{ (Number(item.price) * Number(item.quantity)).toLocaleString() }}
+                                            Tổng: {{ (Number(item?.price) * Number(item?.quantity)).toLocaleString() }}
                                             vnđ
                                         </h6>
                                     </div>
                                 </div>
                                 <div class="flex items-center max-[500px]:justify-center h-full max-md:mt-3">
                                     <div class="flex items-center h-full">
-                                        <button
+                                        <button @click="handleAddToCart(item, '-')"
                                             class="group rounded-l-xl px-5 py-[18px] border border-gray-200 flex items-center justify-center shadow-sm shadow-transparent transition-all duration-500 hover:bg-gray-50 hover:border-gray-300 hover:shadow-gray-300 focus-within:outline-gray-300">
                                             <svg class="stroke-gray-900 transition-all duration-500 group-hover:stroke-black"
                                                 xmlns="http://www.w3.org/2000/svg" width="22" height="22"
@@ -73,10 +73,10 @@
                                                     stroke-linecap="round" />
                                             </svg>
                                         </button>
-                                        <input type="text"
+                                        <input type="text" readonly
                                             class="border-y border-gray-200 outline-none text-gray-900 font-semibold text-lg w-full max-w-[73px] min-w-[60px] placeholder:text-gray-900 py-[15px]  text-center bg-transparent"
-                                            placeholder="1">
-                                        <button
+                                            :placeholder="item?.quantity">
+                                        <button @click="handleAddToCart(item, '+')"
                                             class="group rounded-r-xl px-5 py-[18px] border border-gray-200 flex items-center justify-center shadow-sm shadow-transparent transition-all duration-500 hover:bg-gray-50 hover:border-gray-300 hover:shadow-gray-300 focus-within:outline-gray-300">
                                             <svg class="stroke-gray-900 transition-all duration-500 group-hover:stroke-black"
                                                 xmlns="http://www.w3.org/2000/svg" width="22" height="22"
@@ -105,7 +105,7 @@
                         </h2>
                         <div class="mt-8">
                             <div class="flex items-center justify-between pb-6">
-                                <p class="font-normal text-lg leading-8 text-black">{{ dataCart?.length }} Sản phẩm</p>
+                                <p class="font-normal text-lg leading-8 text-black">{{ totalItems }} Sản phẩm</p>
                                 <p class="font-medium text-lg leading-8 text-black">
                                     {{ Number(totalAmount).toLocaleString() }} vnđ
                                 </p>
@@ -157,7 +157,20 @@
                                 <p class="my-5 font-semibold">Hỗ trợ thanh toán</p>
                                 <p class="text-sm flex items-center gap-2">
                                     <span>
-                                        <svg width="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 12.9L7.14286 16.5L15 7.5" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M20 7.5625L11.4283 16.5625L11 16" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                                        <svg width="15" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                stroke-linejoin="round"></g>
+                                            <g id="SVGRepo_iconCarrier">
+                                                <path d="M4 12.9L7.14286 16.5L15 7.5" stroke="#1C274C"
+                                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                                </path>
+                                                <path d="M20 7.5625L11.4283 16.5625L11 16" stroke="#1C274C"
+                                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                                </path>
+                                            </g>
+                                        </svg>
                                     </span>
                                     <span>
                                         Thanh toán bằng QR Code
@@ -165,7 +178,20 @@
                                 </p>
                                 <p class="text-sm flex items-center gap-2 mt-3">
                                     <span>
-                                        <svg width="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 12.9L7.14286 16.5L15 7.5" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M20 7.5625L11.4283 16.5625L11 16" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                                        <svg width="15" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                stroke-linejoin="round"></g>
+                                            <g id="SVGRepo_iconCarrier">
+                                                <path d="M4 12.9L7.14286 16.5L15 7.5" stroke="#1C274C"
+                                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                                </path>
+                                                <path d="M20 7.5625L11.4283 16.5625L11 16" stroke="#1C274C"
+                                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                                </path>
+                                            </g>
+                                        </svg>
                                     </span>
                                     <span>
                                         Thanh toán chuyển khoản
@@ -173,7 +199,20 @@
                                 </p>
                                 <p class="text-sm flex items-center gap-2 mt-3">
                                     <span>
-                                        <svg width="15" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 12.9L7.14286 16.5L15 7.5" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M20 7.5625L11.4283 16.5625L11 16" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>
+                                        <svg width="15" viewBox="0 0 24 24" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                                stroke-linejoin="round"></g>
+                                            <g id="SVGRepo_iconCarrier">
+                                                <path d="M4 12.9L7.14286 16.5L15 7.5" stroke="#1C274C"
+                                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                                </path>
+                                                <path d="M20 7.5625L11.4283 16.5625L11 16" stroke="#1C274C"
+                                                    stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                                </path>
+                                            </g>
+                                        </svg>
                                     </span>
                                     <span>
                                         Thanh toán khi nhận hàng
@@ -181,7 +220,7 @@
                                     </span>
                                 </p>
                                 <div class="flex items-center justify-between py-8">
-                                    <p class="font-medium text-xl leading-8 text-black">{{ dataCart?.length }} Sản phẩm
+                                    <p class="font-medium text-xl leading-8 text-black">{{ totalItems }} Sản phẩm
                                     </p>
                                     <p class="font-semibold text-xl leading-8 text-indigo-600">
                                         {{ Number(totalAmount).toLocaleString() }} vnđ</p>
@@ -201,22 +240,58 @@
     </div>
 </template>
 <script lang="js">
+import Cookie from "js-cookie";
 export default defineNuxtComponent({
     data() {
         return {
             dataCart: null,
             totalAmount: null,
+            totalItems: 0,
         }
     },
-    created() {
-        const data = useState('listCart').value?.listCart
-        this.dataCart = data.cart.data;
-        this.totalAmount = data.totalAmount;
+    async created() {
+        const data = (await useGetCart()).value
+        this.dataCart = data.listCart.cart.data;
+        this.totalAmount = data.listCart.totalAmount;
+        this.totalItems = this.getTotalItems(this.dataCart);
     },
     async setup() {
         const baseImageURL = (await useBaseURL()).value.baseURLImage;
         return {
             baseImageURL,
+        }
+    },
+    methods: {
+        async handleAddToCart(product, math) {
+            const customer_id = Cookie.get('SSID');
+            if (math == '+') {
+                const request = {
+                    action: 'create',
+                    customer_id: customer_id,
+                    price: product?.product?.price,
+                    product_id: product?.product?.product_id,
+                    quantity: 1,
+                    status: 0,
+                    payment_date: ''
+                }
+                useChangeCart(request);
+                
+                const data = (await useGetCart()).value
+                this.dataCart = data.listCart.cart.data;
+                this.totalAmount = data.listCart.totalAmount;
+                this.totalItems = this.getTotalItems(this.dataCart)
+            } else if (math == '-') {
+
+            }
+        },
+        getTotalItems(cart){
+            let count = 0;
+            cart.forEach(item => {
+                count += item?.quantity;
+            });
+
+            
+            return count;
         }
     }
 });

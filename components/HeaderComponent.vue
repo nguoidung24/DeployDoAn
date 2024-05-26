@@ -95,6 +95,8 @@
 </template>
 
 <script lang="js">
+import { useWebsiteStore } from '~/stores/website';
+
 const dataMenu = [
     {
         text: "Trang chủ",
@@ -124,13 +126,22 @@ export default defineNuxtComponent({
             totalCartItems: 0
         }
     },
+    computed: {
+        async setDataCart() {
+            return useWebsiteStore().getWebData('listCart');
+        }
+    },
     watch: {
-        
+        async setDataCart() {
+            const dataCart = useState('listCart').value
+            this.totalCartItems = this.getTotalItems(dataCart?.listCart?.cart?.data)
+
+        },
     },
     async created() {
-        const dataCart = (await useGetCart()).value
-        this.totalCartItems = dataCart?.listCart?.cart?.data?.length
-        
+        (await useGetCart()).value
+        const dataCart = useState('listCart').value
+        this.totalCartItems = this.getTotalItems(dataCart?.listCart?.cart?.data)
     },
     methods: {
         onMenuToggle(e) {
@@ -150,6 +161,13 @@ export default defineNuxtComponent({
         handleClickMenu(link) {
             this.onMenuToggle();
             this.$router.push(link);
+        },
+        getTotalItems(cart) {
+            let count = 0;
+            cart?.forEach(item => {
+                count += item?.quantity;
+            });
+            return count;
         }
 
     },
