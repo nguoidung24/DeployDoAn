@@ -35,14 +35,14 @@ export const useChangeCart = async (att) => {
     const BASE_URL = (await (useBaseURL())).value.baseURL
 
     const formdata = new FormData();
-    formdata.append("action", "create");
-    formdata.append("customer_id", "1");
-    formdata.append("product_id", "4");
-    formdata.append("price", "114000000");
-    formdata.append("quantity", "1");
-    formdata.append("status", "0");
-    formdata.append("payment_date", "");
-
+    formdata.append("action", att["action"]);
+    formdata.append("customer_id", att["customer_id"]);
+    formdata.append("product_id", att["product_id"]);
+    formdata.append("price", att["price"]);
+    formdata.append("quantity", att["quantity"]);
+    formdata.append("status", att["status"]);
+    formdata.append("payment_date", "" );
+    
     const requestOptions = {
         method: "POST",
         body: formdata,
