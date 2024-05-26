@@ -27,8 +27,12 @@
                         </figure>
 
                         <div class="px-6 py-4 h-f">
-                            <div class="font-bold text-lg text-center mb-2">{{ item?.product_name }}</div>
-                            <p class="text-center text-gray-500 uppercase mb-3">{{item?.category?.category_name}}</p>
+                            <div class="font-bold text-lg text-center mb-2">
+                                {{ item?.product_name }}
+                            </div>
+                            <p class="text-center text-sm text-gray-500 uppercase mb-3">
+                                {{ item?.category?.category_name }}
+                            </p>
                             <p class="text-gray-700 text-sm flex gap-2 justify-center font-sans items-center">
                                 <span class="font-semibold">Màu sắc:</span>
                                 <span class="bg-gray-200 px-2 rounded-3xl" :style="`color:${item?.color?.code}`">
@@ -64,7 +68,7 @@
                             <!-- THAY PRODUCT_ID THÀNH GROUP_ID 25/5/2024 -->
                             <div class="px-3 text-center pb-4">
                                 <NuxtLink :to="`/product?id=${item.group_id}`"
-                                    class="font-mono inline-block px-5 mx-auto bg-black text-white text-[14px] py-1 rounded-3xl">
+                                    class="font-mono inline-block px-5 mx-auto bg-black text-white text-[12.5px] lg:text-[14px] py-1 rounded-3xl">
                                     Xem ngay
                                 </NuxtLink to="">
                             </div>
