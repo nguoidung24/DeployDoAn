@@ -6,6 +6,8 @@ export const useGetCart = async () => {
     const BASE_URL = (await (useBaseURL())).value.baseURL
     const websiteStore = useWebsiteStore()
     const { webData } = storeToRefs(websiteStore)
+
+    
     let data = null;
     const id = await Cookie.get('SSID');
 
@@ -20,13 +22,11 @@ export const useGetCart = async () => {
         })
     };
 
-    if (websiteStore.getWebData('listCart') == null) {
         await fetch(BASE_URL + 'Order', requestOptions)
             .then((response) => response.json())
             .then((response) => data = response);
         websiteStore.setWebData({ key: 'listCart', value: data })
-    }
-
+    
     return useState('listCart', () => webData)
 
 }

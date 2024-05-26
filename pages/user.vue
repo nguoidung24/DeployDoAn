@@ -71,7 +71,7 @@ export default defineNuxtComponent({
             if (confirm('Bạn đang đăng xuất?')) {
                 Cookies.remove("isLogin");
                 Cookies.remove("SSID");
-                this.$router.push("/");
+                this.$router.push("/login");
             }
 
         }
