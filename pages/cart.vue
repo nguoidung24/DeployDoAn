@@ -60,8 +60,22 @@
                                 </div>
                                 <div class="flex items-center max-[500px]:justify-center h-full max-md:mt-3">
                                     <div class="flex items-center h-full">
-                                        <button @click="handleAddToCart(item, '-')"
+                                        <button v-if="Number(item?.quantity) > 1" :disabled="isLoadQuantity"
+                                            @click="handleAddToCart(item, '-')"
                                             class="group rounded-l-xl px-5 py-[18px] border border-gray-200 flex items-center justify-center shadow-sm shadow-transparent transition-all duration-500 hover:bg-gray-50 hover:border-gray-300 hover:shadow-gray-300 focus-within:outline-gray-300">
+                                            <svg class="stroke-gray-900 transition-all duration-500 group-hover:stroke-black"
+                                                xmlns="http://www.w3.org/2000/svg" width="22" height="22"
+                                                viewBox="0 0 22 22" fill="none">
+                                                <path d="M16.5 11H5.5" stroke="" stroke-width="1.6"
+                                                    stroke-linecap="round" />
+                                                <path d="M16.5 11H5.5" stroke="" stroke-opacity="0.2" stroke-width="1.6"
+                                                    stroke-linecap="round" />
+                                                <path d="M16.5 11H5.5" stroke="" stroke-opacity="0.2" stroke-width="1.6"
+                                                    stroke-linecap="round" />
+                                            </svg>
+                                        </button>
+                                        <button v-if="Number(item?.quantity) <= 1" :disabled="isLoadQuantity"
+                                            class="group rounded-l-xl bg-gray-200 px-5 py-[18px] border border-gray-200 flex items-center justify-center shadow-sm shadow-transparent transition-all duration-500  hover:shadow-gray-300 focus-within:outline-gray-300">
                                             <svg class="stroke-gray-900 transition-all duration-500 group-hover:stroke-black"
                                                 xmlns="http://www.w3.org/2000/svg" width="22" height="22"
                                                 viewBox="0 0 22 22" fill="none">
@@ -76,7 +90,7 @@
                                         <input type="text" readonly
                                             class="border-y border-gray-200 outline-none text-gray-900 font-semibold text-lg w-full max-w-[73px] min-w-[60px] placeholder:text-gray-900 py-[15px]  text-center bg-transparent"
                                             :placeholder="item?.quantity">
-                                        <button @click="handleAddToCart(item, '+')"
+                                        <button :disabled="isLoadQuantity" @click="handleAddToCart(item, '+')"
                                             class="group rounded-r-xl px-5 py-[18px] border border-gray-200 flex items-center justify-center shadow-sm shadow-transparent transition-all duration-500 hover:bg-gray-50 hover:border-gray-300 hover:shadow-gray-300 focus-within:outline-gray-300">
                                             <svg class="stroke-gray-900 transition-all duration-500 group-hover:stroke-black"
                                                 xmlns="http://www.w3.org/2000/svg" width="22" height="22"
@@ -229,9 +243,15 @@
                                     <p class="font-semibold text-xl leading-8 text-indigo-600">
                                         {{ Number(totalAmount).toLocaleString() }} vnđ</p>
                                 </div>
-                                <button
-                                    class="w-full text-center bg-indigo-600 rounded-xl py-3 px-6 font-semibold text-lg text-white transition-all duration-500 hover:bg-indigo-700">Thanh
-                                    Toán</button>
+                                <button v-if="Number(totalItems) > 0"
+                                    class="w-full text-center bg-indigo-600 rounded-xl py-3 px-6 font-semibold text-lg text-white transition-all duration-500 hover:bg-indigo-700">
+                                    Thanh
+                                    Toán
+                                </button>
+                                <NuxtLink to="/" v-if="Number(totalItems) <= 0"
+                                    class="w-full block text-center bg-indigo-600 rounded-xl py-3 px-6 font-semibold text-lg text-white transition-all duration-500 hover:bg-indigo-700">
+                                    Mua sắm
+                                </NuxtLink>
                             </div>
                         </div>
                     </div>
@@ -251,6 +271,7 @@ export default defineNuxtComponent({
             dataCart: null,
             totalAmount: null,
             totalItems: 0,
+            isLoadQuantity: false,
         }
     },
     async created() {
@@ -267,6 +288,8 @@ export default defineNuxtComponent({
     },
     methods: {
         async handleAddToCart(product, math) {
+            this.isLoadQuantity = true;
+
             const customer_id = Cookie.get('SSID');
             let action = '';
             if (math == '+') {
@@ -291,6 +314,7 @@ export default defineNuxtComponent({
             this.totalAmount = data.listCart.totalAmount;
             this.totalItems = this.getTotalItems(this.dataCart)
 
+            this.isLoadQuantity = false;
 
 
         },
@@ -302,6 +326,8 @@ export default defineNuxtComponent({
             return count;
         },
         async handleDeleteCart(product) {
+            this.isLoadQuantity = true;
+
             if (confirm("Có chắc muốn xóa!")) {
                 useDeleteCart({
                     product_id: product.product_id,
@@ -313,6 +339,9 @@ export default defineNuxtComponent({
                 this.totalItems = this.getTotalItems(this.dataCart)
                 alert('Đã xóa')
             }
+
+            this.isLoadQuantity = false;
+
 
         }
     }
