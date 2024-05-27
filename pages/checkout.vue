@@ -30,27 +30,33 @@
                                 <p class="text-center font-semibold">Thông tin khách hàng</p>
                                 <div class="text-left mt-3">
                                     <p>Họ và tên:</p>
-                                    <input v-model="user_name" placeholder="Họ và tên" class="mt-1 w-full rounded-lg" type="text">
+                                    <input v-model="user_name" placeholder="Họ và tên" class="mt-1 w-full rounded-lg"
+                                        type="text">
                                 </div>
                                 <div class="text-left mt-3">
                                     <p>Số điện thoại:</p>
-                                    <input v-model="user_phone" placeholder="Số điện thoại" class="mt-1 w-full rounded-lg" type="text">
+                                    <input v-model="user_phone" placeholder="Số điện thoại"
+                                        class="mt-1 w-full rounded-lg" type="text">
                                 </div>
                                 <div class="text-left mt-3">
                                     <p>Tỉnh, Thành phố:</p>
-                                    <input v-model="user_province" placeholder="Tỉnh, Thành phố" class="mt-1 w-full rounded-lg" type="text">
+                                    <input v-model="user_province" placeholder="Tỉnh, Thành phố"
+                                        class="mt-1 w-full rounded-lg" type="text">
                                 </div>
                                 <div class="text-left mt-3">
                                     <p>Quận, Huyện:</p>
-                                    <input v-model="user_distrist" placeholder="Quận, Huyện" class="mt-1 w-full rounded-lg" type="text">
+                                    <input v-model="user_distrist" placeholder="Quận, Huyện"
+                                        class="mt-1 w-full rounded-lg" type="text">
                                 </div>
                                 <div class="text-left mt-3">
                                     <p>Xã, Phường:</p>
-                                    <input v-model="user_wards" placeholder="Xã, Phường" class="mt-1 w-full rounded-lg" type="text">
+                                    <input v-model="user_wards" placeholder="Xã, Phường" class="mt-1 w-full rounded-lg"
+                                        type="text">
                                 </div>
                                 <div class="text-left mt-3">
                                     <p>Số nhà, đường...:</p>
-                                    <input v-model="user_address" placeholder="Số nhà, đường..." class="mt-1 w-full rounded-lg" type="text">
+                                    <input v-model="user_address" placeholder="Số nhà, đường..."
+                                        class="mt-1 w-full rounded-lg" type="text">
                                 </div>
                                 <div class="text-left mt-3">
                                     <p>Phương thức thanh toán:</p>
@@ -195,8 +201,12 @@
                                     <p class="font-semibold text-xl leading-8 text-indigo-600">
                                         {{ Number(totalAmount).toLocaleString() }} vnđ</p>
                                 </div>
-                                <button @click="handleCheckOut()"
+                                <button v-if="!checkOutIsLoading" @click="handleCheckOut()"
                                     class="w-full block text-center bg-indigo-600 rounded-xl py-3 px-6 font-semibold text-lg text-white transition-all duration-500 hover:bg-indigo-700">
+                                    Đặt Hàng
+                                </button>
+                                <button v-if="checkOutIsLoading"
+                                    class="w-full block text-center bg-gray-600 rounded-xl py-3 px-6 font-semibold text-lg text-white transition-all duration-500 hover:bg-gray-700">
                                     Đặt Hàng
                                 </button>
                             </div>
@@ -206,6 +216,13 @@
                 </div>
             </div>
         </section>
+        <div v-if="isGenQR" class="fixed top-0 left-0 w-screen h-screen bg-[#0000009e] z-40">
+            <div class="w-[400px] absolute top-2/4 left-2/4 -translate-x-2/4 text-center -translate-y-2/4">
+                <img class="" :src="dataQR?.data?.qrDataURL" alt="">
+                <button @click="handleCheckOut()" class="mt-3 px-4 py-2 bg-white rounded font-semibold">Hoàn
+                    Thành</button>
+            </div>
+        </div>
     </div>
 </template>
 <script lang="js">
@@ -218,13 +235,22 @@ export default defineNuxtComponent({
             totalItems: 0,
             isLoadQuantity: false,
             isLoading: true,
-            user_name: null,
-            user_phone: null,
-            user_province: null,
-            user_distrist: null,
-            user_wards: null,
-            user_address: null,
+            isGenQR: false,
+            dataQR: null,
+            // user_name: null,
+            // user_phone: null,
+            // user_province: null,
+            // user_distrist: null,
+            // user_wards: null,
+            // user_address: null,
+            user_name: 'Nguyễn Ngọc Thái',
+            user_phone: '0987654321',
+            user_province: "Hà Nội",
+            user_distrist: "Cầu Giấy",
+            user_wards: "Dịch Vọng Hậu",
+            user_address: "12",
             payment_method: -1,
+            checkOutIsLoading: false,
         }
     },
     async created() {
@@ -233,6 +259,7 @@ export default defineNuxtComponent({
         if (this.dataCart?.length == undefined || this.dataCart?.length == 0) {
             this.$router.push("/");
         }
+
         this.totalAmount = data.listCart.totalAmount;
         this.totalItems = this.getTotalItems(this.dataCart);
         this.isLoading = false;
@@ -253,19 +280,51 @@ export default defineNuxtComponent({
             });
             return count;
         },
-        handleCheckOut(){
-            const request = {
-                user_name: this.user_name,
-                user_phone: this.user_phone,
-                user_province: this.user_province,
-                user_distrist: this.user_distrist,
-                user_wards: this.user_wards,
-                user_address: this.user_address,
-                cart: this.dataCart
-            }
-            console.log(request);
-        }
 
+        async handleCheckOut() {
+            this.checkOutIsLoading = true;
+            const customer_id = Cookie.get("SSID");
+
+            let order_ids = '';
+
+            await this.dataCart.forEach(item => {
+                order_ids += item.order_id + ',';
+            });
+
+            if (Number(this.payment_method) == -1) {
+                this.checkOutIsLoading = false;
+                return alert('Bạn chưa chọn phương thức thanh toán!');
+            } else if (Number(this.payment_method) == 0) {
+                if (this.isGenQR == false) {
+                    this.dataQR = await useGenQR({
+                        amount: this.totalAmount,
+                        addInfo: `Thanh toán đơn hàng ${customer_id}c${order_ids?.slice(0, -1)?.replace(',', 'x')}`
+                    })
+                    this.checkOutIsLoading = false;
+                    return this.isGenQR = true;
+                }
+                this.isGenQR = false;
+                this.checkOutIsLoading = false;
+            }
+
+
+            const request = {
+                action: 'edit',
+                payMethod: this.payment_method,
+                payment_date: null,
+                customer_id: customer_id,
+                updateStatus: "1",
+                order_ids: order_ids?.slice(0, -1),
+                updateLocal: `${this.user_province},${this.user_distrist},${this.user_wards},${this.user_address},${this.user_name},${this.user_phone}`
+            }
+
+            await useCheckOut(request)
+            await useGetCart()
+
+            await alert("Đã đặt hàng");
+            this.$router.push("/user");
+            this.checkOutIsLoading = false;
+        }
     }
 });
 </script>

@@ -100,4 +100,22 @@ export const useRating = async (att) => {
         .catch((error) => console.error(error));
 }
 
+export const useCheckOut = async (request) => {
+    const BASE_URL = (await (useBaseURL())).value.baseURL
+
+    const requestOptions = {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify( request),
+        redirect: "follow"
+    };
+
+
+    await fetch(BASE_URL + "Order", requestOptions)
+        .then((response) => response.text())
+        .then((result) => console.log(result))
+        .catch((error) => console.error(error));
+}
 
