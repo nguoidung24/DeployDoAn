@@ -90,11 +90,15 @@
                                             </svg>
                                         </button>
                                     </div>
+                                    <div class="ms-5">
+                                        <button @click="handleDeleteCart(item)"
+                                            class="size-6 text-sm text-center bg-red-600 rounded-full font-semibold text-white">
+                                            x
+                                        </button>
+                                    </div>
                                 </div>
-
                             </div>
                         </div>
-
                     </div>
                     <!-- ========================================= HẾT DANH SÁCH SẢN PHẨM ================================================= -->
                     <!-- ========================================== TỔNG QUAN GIỎ HÀNG =========================================== -->
@@ -264,34 +268,52 @@ export default defineNuxtComponent({
     methods: {
         async handleAddToCart(product, math) {
             const customer_id = Cookie.get('SSID');
+            let action = '';
             if (math == '+') {
-                const request = {
-                    action: 'create',
-                    customer_id: customer_id,
-                    price: product?.product?.price,
-                    product_id: product?.product?.product_id,
-                    quantity: 1,
-                    status: 0,
-                    payment_date: ''
-                }
-                useChangeCart(request);
-                
-                const data = (await useGetCart()).value
-                this.dataCart = data.listCart.cart.data;
-                this.totalAmount = data.listCart.totalAmount;
-                this.totalItems = this.getTotalItems(this.dataCart)
+                action = 'create';
             } else if (math == '-') {
-
+                action = '-quantity';
             }
+
+            const request = {
+                action: action,
+                customer_id: customer_id,
+                price: product?.product?.price,
+                product_id: product?.product?.product_id,
+                quantity: 1,
+                status: 0,
+                payment_date: ''
+            }
+            useChangeCart(request);
+
+            const data = (await useGetCart()).value
+            this.dataCart = data.listCart.cart.data;
+            this.totalAmount = data.listCart.totalAmount;
+            this.totalItems = this.getTotalItems(this.dataCart)
+
+
+
         },
-        getTotalItems(cart){
+        getTotalItems(cart) {
             let count = 0;
             cart.forEach(item => {
                 count += item?.quantity;
             });
-
-            
             return count;
+        },
+        async handleDeleteCart(product) {
+            if (confirm("Có chắc muốn xóa!")) {
+                useDeleteCart({
+                    product_id: product.product_id,
+                    customer_id: product.customer_id
+                });
+                const data = (await useGetCart()).value
+                this.dataCart = data.listCart.cart.data;
+                this.totalAmount = data.listCart.totalAmount;
+                this.totalItems = this.getTotalItems(this.dataCart)
+                alert('Đã xóa')
+            }
+
         }
     }
 });

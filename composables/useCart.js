@@ -54,3 +54,23 @@ export const useChangeCart = async (att) => {
         .then((result) => console.log(result))
         .catch((error) => console.error(error));
 }
+
+
+export const useDeleteCart = async (att) => {
+    const formdata = new FormData();
+    formdata.append("action", "delete");
+    formdata.append("pid", att.product_id);
+    formdata.append("cid", att.customer_id);
+    formdata.append("sid", "0");
+    
+    const requestOptions = {
+      method: "POST",
+      body: formdata,
+      redirect: "follow"
+    };
+    
+    fetch("https://admin.thegioidilac.shop/api/Order", requestOptions)
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.error(error));
+}

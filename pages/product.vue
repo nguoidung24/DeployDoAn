@@ -71,12 +71,11 @@
                                         Reviews</span>
                                 </span>
                             </div>
-                            <p class="leading-relaxed text-justify">Fam locavore kickstarter distillery. Mixtape
-                                chillwave tumeric
-                                sriracha taximy chia microdosing tilde DIY. XOXO fam indxgo juiceramps cornhole raw
-                                denim
-                                forage brooklyn. Everyday carry +1 seitan poutine tumeric. Gastropub blue bottle austin
-                                listicle pour-over, neutra jean shorts keytar banjo tattooed umami cardigan.</p>
+                            <p>Đã bán: {{ dataProduct[tabActive]?.sold }}</p>
+                            <p>Trạng thái: {{ Number(dataProduct[tabActive]?.quantity) > 0 ? 'Còn hàng' : 'Hết hàng' }}
+                            </p>
+
+                            <p class="leading-relaxed text-justify"> </p>
                             <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5">
                                 <div class="flex">
                                     <span class="mr-3">Màu sắc: </span>
@@ -213,9 +212,14 @@
                                             }}<sup>vnđ</sup></span></p>
                                 </span>
                                 <p>
-                                    <button
+                                    <button v-if="Number(dataProduct[tabActive]?.quantity) > 0"
+                                        @click="addToCart(dataProduct[tabActive])"
                                         class="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">
                                         Thêm vào giỏ hàng
+                                    </button>
+                                    <button disabled v-if="Number(dataProduct[tabActive]?.quantity) <= 0"
+                                        class="flex ml-auto text-white bg-gray-500 border-0 py-2 px-6 focus:outline-none rounded">
+                                        Hết hàng
                                     </button>
                                 </p>
 
@@ -399,6 +403,9 @@ import { Navigation } from 'swiper/modules';
 
 import "swiper/css"
 import 'swiper/css/navigation';
+
+import Cookie from 'js-cookie'
+
 export default defineNuxtComponent({
     components: {
         Swiper,
@@ -437,6 +444,23 @@ export default defineNuxtComponent({
         tabTo(value) {
             this.imageActicve = 0;
             return this.tabActive = value;
+        },
+        async addToCart(product) {
+            const customer_id = Cookie.get('SSID');
+            let action = 'create';
+            const request = {
+                action: action,
+                customer_id: customer_id,
+                price: product?.price,
+                product_id: product?.product_id,
+                quantity: 1,
+                status: 0,
+                payment_date: ''
+            }
+            useChangeCart(request);
+
+            const data = (await useGetCart()).value
+            alert('Thêm vào giỏ hàng thành công')
         }
     }
 })
