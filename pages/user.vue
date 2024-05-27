@@ -10,8 +10,12 @@
                                     class="w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0">
 
                                 </img>
-                                <h1 class="text-xl font-bold">Nguyễn Tất Niên</h1>
-                                <p class="text-gray-700">samseng.shop</p>
+                                <h1 class="text-xl font-bold">
+                                    Nguyễn Tất Niên
+                                </h1>
+                                <p class="italic text-gray-700">
+                                    samseng.shop
+                                </p>
                                 <div class="mt-6 flex flex-wrap gap-4 justify-center">
                                     <button @click="handleLogout()"
                                         class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
@@ -29,20 +33,15 @@
                                     Danh mục
                                 </span>
                                 <ul>
-                                    <li class="mb-2 hover:underline hover:cursor-pointer">
-                                        Chờ duyệt
-                                    </li>
-                                    <li class="mb-2 hover:underline hover:cursor-pointer">
-                                        Đang giao
-                                    </li>
-                                    <li class="mb-2 hover:underline hover:cursor-pointer">
-                                        Đã giao
-                                    </li>
-                                    <li class="mb-2 hover:underline hover:cursor-pointer">
-                                        Đơn bị hủy
-                                    </li>
-                                    <li class="mb-2 hover:underline hover:cursor-pointer">
-                                        Thất bại
+                                    <li @click="handleChangeTab(item)" v-for="(item, index) in Object.keys(tab)"
+                                        :key="index"
+                                        :class="`${tabActive == item ? ' font-semibold italic ' : ''}} mb-1 pb-2 hover:underline hover:cursor-pointer`">
+                                        <span>
+                                            {{ tabActive == item ? '👉 ' : '🤜 ' }}
+                                        </span>
+                                        <span>
+                                            {{ tab[`${item}`].text }}
+                                        </span>
                                     </li>
                                 </ul>
                             </div>
@@ -50,8 +49,97 @@
                     </div>
                     <div class="col-span-4 sm:col-span-9">
                         <div class="bg-white shadow rounded-lg p-6 min-h-[100vh]">
-                            <IndexSuggestedProducts header="" :dataSuggestedProducts="null" />
+                            <div class="grid grid-cols-1 lg:grid-cols-2">
+                                <div v-for="(item, index) in tab[`${tabActive}`]?.value" :key="index"
+                                    class="mb-5 flex gap-2 items-center">
+                                    <figure>
+                                        <img class="lg:w-48 w-36 me-2 hover:scale-95 duration-700 hover:cursor-pointer"
+                                            :src="baseImageURL + item?.product?.thumbnail" alt="">
+                                    </figure>
+                                    <div class="">
+                                        <p class="font-semibold text-lg">
+                                            {{ item?.product?.product_name }} <span>({{ item?.quantity }} chiếc)</span>
+                                        </p>
+                                        <div>
+                                            <span class="italic">
+                                                Đặt lúc:
+                                                {{
+                                                    item?.order_date?.split(' ')[0] +
+                                                    ' | ' +
+                                                    item?.order_date?.split(' ')[1]
+                                                }}
+                                            </span>
+                                        </div>
+                                        <div v-if="`${tabActive}` == '3'">
+                                            <span class="italic">
+                                                Thanh toán lúc:
+                                                {{
+                                                    item?.payment_date?.split(' ')[0] +
+                                                    ' | ' +
+                                                    item?.order_date?.split(' ')[1]
+                                                }}
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <span class="italic">
+                                                Phương thức:
+                                                {{ item?.pay_method }}
+                                            </span>
+                                        </div>
+                                        <div>
+                                            <span class="italic">Giá </span>:<span class="font-bold">
+                                                {{ Number(item?.price).toLocaleString() }}
+                                                <sup>vnđ</sup>
+                                            </span> <br> <span class="italic">Tổng </span>:<span
+                                                class="font-bold text-red-500">
+                                                {{ (Number(item?.price) * Number(item?.quantity)).toLocaleString() }}
+                                                <sup>vnđ</sup>
+                                            </span>
+                                        </div> <!----> <!---->
+                                        <div>
+                                            <p v-if="item?.pay_method == 'Thanh Toán Online' && `${tabActive}` == '1'"
+                                                class="italic text-sm text-red-600">
+                                                (Đang kiểm tra thanh toán - Không quá 24h)</p>
+                                        </div>
+                                        <div>
+                                            <button v-if="`${tabActive}` == '1'"
+                                                class="bg-red-500 mt-2 text-sm text-white px-3 py-2 rounded-lg ">
+                                                Hủy đơn - chua xong</button>
+                                        </div>
+                                        <div v-if="`${tabActive}` == '3'">
+                                            <button @click="handleDisplayRating()" v-if="!item?.rating"
+                                                class="px-4 py-2 text-sm bg-blue-500 rounded text-white">
+                                                Đánh giá {{ item?.rating }}
+                                            </button>
+                                            <p v-if="item?.rating">
+                                                <span v-for="(i, j) in new Array(Number(item?.rating)).fill(0)"
+                                                    :key="j">
+                                                    ⭐
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div v-if="displayRating" class="fixed top-0 left-0 w-screen h-screen bg-[#0000003e] z-50">
+                <div
+                    class="absolute px-24 rounded-2xl py-8 bg-white top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4">
+                    <p class="text-center font-semibold mb-5">Đánh giá</p>
+                    <p>
+                        <span v-for="(i, j) in new Array(Number(ratingVal)).fill(0)" :key="j">
+                            ⭐
+                        </span>
+                    </p>
+                    <input v-model="ratingVal" type="range" max="5" min="1" class="hover:cursor-pointer">
+                    <div class="flex gap-2 text-white justify-end mt-3">
+                        <button @click="handleRating(null)"
+                            class="border px-4 py-2 rounded-lg bg-green-600">Xong</button>
+                        <button @click="handleDisplayRating()"
+                            class="border px-4 py-2 rounded-lg bg-red-600">Hủy</button>
                     </div>
                 </div>
             </div>
@@ -61,10 +149,25 @@
 <script lang="js">
 import Cookies from "js-cookie";
 export default defineNuxtComponent({
-    created() {
-
-        const isLogin = Cookies.get('isLogin');
-        console.log(isLogin);
+    data() {
+        return {
+            displayRating: false,
+            tabActive: '1',
+            ratingVal: 4,
+            tab: {
+                '1': { text: 'Chờ Duyệt', value: [] },
+                '2': { text: 'Đang Giao', value: [] },
+                '3': { text: 'Đã Giao', value: [] },
+                '4': { text: 'Thất Bại', value: [] },
+                '-1': { text: 'Đơn bị hủy', value: [] },
+            }
+        }
+    },
+    async created() {
+        const data = await useCustomer();
+        data?.data?.map((item, index) => {
+            this.tab[`${item?.status}`]?.value?.push(item);
+        });
     },
     methods: {
         handleLogout() {
@@ -74,7 +177,28 @@ export default defineNuxtComponent({
                 this.$router.push("/login");
             }
 
+        },
+        handleChangeTab(item) {
+            this.tabActive = `${item}`;
+        },
+        handleDisplayRating() {
+            this.displayRating = !this.displayRating;
+        },
+        handleRating(att) {
+            if (Number(this.ratingVal) <= 5 && Number(this.ratingVal) >= 1) {
+                console.log({
+                    product_id: att?.product?.product_id,
+                    order_id: att?.order_id,
+                    star: this.ratingVal
+                })
+            }
         }
     },
+    async setup() {
+        const baseImageURL = (await useBaseURL()).value.baseURLImage
+        return {
+            baseImageURL
+        }
+    }
 })
 </script>

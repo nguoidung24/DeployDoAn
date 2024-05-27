@@ -41,8 +41,8 @@ export const useChangeCart = async (att) => {
     formdata.append("price", att["price"]);
     formdata.append("quantity", att["quantity"]);
     formdata.append("status", att["status"]);
-    formdata.append("payment_date", "" );
-    
+    formdata.append("payment_date", "");
+
     const requestOptions = {
         method: "POST",
         body: formdata,
@@ -57,20 +57,48 @@ export const useChangeCart = async (att) => {
 
 
 export const useDeleteCart = async (att) => {
+    const BASE_URL = (await (useBaseURL())).value.baseURL
+
     const formdata = new FormData();
     formdata.append("action", "delete");
     formdata.append("pid", att.product_id);
     formdata.append("cid", att.customer_id);
     formdata.append("sid", "0");
-    
+
     const requestOptions = {
-      method: "POST",
-      body: formdata,
-      redirect: "follow"
+        method: "POST",
+        body: formdata,
+        redirect: "follow"
     };
-    
-    fetch("https://admin.thegioidilac.shop/api/Order", requestOptions)
-      .then((response) => response.text())
-      .then((result) => console.log(result))
-      .catch((error) => console.error(error));
+
+    fetch(BASE_URL + "Order", requestOptions)
+        .then((response) => response.text())
+        .then((result) => console.log(result))
+        .catch((error) => console.error(error));
 }
+
+
+
+export const useRating = async (att) => {
+    const BASE_URL = (await (useBaseURL())).value.baseURL
+
+    const formdata = new FormData();
+    formdata.append("action", "updateStar");
+    formdata.append("product_id", att.product_id);
+    formdata.append("order_id", att.order_id);
+    formdata.append("star", att.star);
+
+    const requestOptions = {
+        method: "POST",
+        headers: myHeaders,
+        body: formdata,
+        redirect: "follow"
+    };
+
+    fetch(BASE_URL + "Products", requestOptions)
+        .then((response) => response.text())
+        .then((result) => console.log(result))
+        .catch((error) => console.error(error));
+}
+
+
