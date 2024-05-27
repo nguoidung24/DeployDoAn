@@ -47,9 +47,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-span-4 sm:col-span-9">
+                    <div class="col-span-4 relative sm:col-span-9">
                         <div class="bg-white shadow rounded-lg p-6 min-h-[100vh]">
-                            <div class="grid grid-cols-1 lg:grid-cols-2">
+                            <div v-if="!isLoading" class="grid grid-cols-1 lg:grid-cols-2">
                                 <div v-for="(item, index) in tab[`${tabActive}`]?.value" :key="index"
                                     class="mb-5 flex gap-2 items-center">
                                     <figure>
@@ -107,7 +107,7 @@
                                                 Hủy đơn - chua xong</button>
                                         </div>
                                         <div v-if="`${tabActive}` == '3'">
-                                            <button @click="handleDisplayRating()" v-if="!item?.rating"
+                                            <button @click="handleDisplayRating(item)" v-if="!item?.rating"
                                                 class="px-4 py-2 text-sm bg-blue-500 rounded text-white">
                                                 Đánh giá {{ item?.rating }}
                                             </button>
@@ -117,6 +117,27 @@
                                                     ⭐
                                                 </span>
                                             </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div v-if="isLoading">
+                                <div class="w-full mx-auto">
+                                    <div class="animate-pulse grid p-5 grid-cols-1 lg:grid-cols-2 gap-y-5">
+                                        <div v-for="(i, j) in [0,0,0,0,0,0]" :key="j" class="h-64 w-full flex gap-x-8">
+                                            <div class="h-full rounded-lg w-48 bg-gray-400">
+                                            </div>
+                                            <div class="mt-3 *:h-3 *:mt-3 *:bg-gray-400 *:rounded-lg">
+                                                <p class="w-48"></p>
+                                                <p class="w-56"></p>
+                                                <p class="w-48"></p>
+                                                <p class="w-56"></p>
+                                                <p class="w-48"></p>
+                                                <p class="w-56"></p>
+                                                <p class="w-48"></p>
+                                                <p class="w-56"></p>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -143,6 +164,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
 </template>
@@ -152,6 +174,8 @@ export default defineNuxtComponent({
     data() {
         return {
             displayRating: false,
+            isLoading: true,
+            dataRating: null,
             tabActive: '1',
             ratingVal: 4,
             tab: {
@@ -163,11 +187,13 @@ export default defineNuxtComponent({
             }
         }
     },
+
     async created() {
         const data = await useCustomer();
         data?.data?.map((item, index) => {
             this.tab[`${item?.status}`]?.value?.push(item);
         });
+        this.isLoading = false;
     },
     methods: {
         handleLogout() {
@@ -181,16 +207,36 @@ export default defineNuxtComponent({
         handleChangeTab(item) {
             this.tabActive = `${item}`;
         },
-        handleDisplayRating() {
+        handleDisplayRating(item) {
             this.displayRating = !this.displayRating;
+            this.dataRating = {
+                order_id: item?.order_id,
+                product_id: item?.product?.product_id
+            };
         },
-        handleRating(att) {
+        async handleRating(att) {
             if (Number(this.ratingVal) <= 5 && Number(this.ratingVal) >= 1) {
-                console.log({
-                    product_id: att?.product?.product_id,
-                    order_id: att?.order_id,
+                this.isLoading = true;
+                const request = {
+                    product_id: this.dataRating.product_id,
+                    order_id: this.dataRating.order_id,
                     star: this.ratingVal
-                })
+                };
+                this.displayRating = !this.displayRating;
+                await useRating(request);
+                this.tab = await {
+                    '1': { text: 'Chờ Duyệt', value: [] },
+                    '2': { text: 'Đang Giao', value: [] },
+                    '3': { text: 'Đã Giao', value: [] },
+                    '4': { text: 'Thất Bại', value: [] },
+                    '-1': { text: 'Đơn bị hủy', value: [] },
+                }
+
+                const data = await useCustomer();
+                data?.data?.map((item, index) => {
+                    this.tab[`${item?.status}`]?.value?.push(item);
+                });
+                this.isLoading = false;
             }
         }
     },
