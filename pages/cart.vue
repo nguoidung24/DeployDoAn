@@ -36,7 +36,7 @@
                         </div>
 
                         <!-- SẢN PHẨM  -->
-                        <div v-for="(item, index) in dataCart" :key="index"
+                        <div v-if="!isLoading" v-for="(item, index) in dataCart" :key="index"
                             class="flex flex-col min-[500px]:flex-row min-[500px]:items-center gap-5 py-6  border-b border-gray-200 group">
                             <div class="w-full md:max-w-[126px]">
                                 <img :src="baseImageURL + item?.product?.thumbnail" alt="perfume bottle image"
@@ -112,6 +112,20 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div v-if="isLoading">
+                            Loading...
+                        </div>
+                        <div v-if="!isLoading && (dataCart?.length == 0 || dataCart?.length == undefined)">
+                            <p class="text-center mt-5 font-semibold text-3xl"
+                                style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+                                Giỏ hàng của bạn đang trống
+                            </p>
+                            <p class="text-center mt-3 text-blue-400">
+                                <NuxtLink to="/products"  class="inline-block">
+                                    Mua Sắm
+                                </NuxtLink>
+                            </p>
                         </div>
                     </div>
                     <!-- ========================================= HẾT DANH SÁCH SẢN PHẨM ================================================= -->
@@ -245,8 +259,10 @@
                                 </div>
                                 <NuxtLink to="/checkout" v-if="Number(totalItems) > 0"
                                     class="w-full block text-center bg-indigo-600 rounded-xl py-3 px-6 font-semibold text-lg text-white transition-all duration-500 hover:bg-indigo-700">
-                                    Thanh
-                                    Toán
+                                    Tiến
+                                    Hành
+                                    Đặt
+                                    Hàng
                                 </NuxtLink>
                                 <NuxtLink to="/" v-if="Number(totalItems) <= 0"
                                     class="w-full block text-center bg-indigo-600 rounded-xl py-3 px-6 font-semibold text-lg text-white transition-all duration-500 hover:bg-indigo-700">
@@ -272,6 +288,7 @@ export default defineNuxtComponent({
             totalAmount: null,
             totalItems: 0,
             isLoadQuantity: false,
+            isLoading: true,
         }
     },
     async created() {
@@ -279,6 +296,7 @@ export default defineNuxtComponent({
         this.dataCart = data.listCart.cart.data;
         this.totalAmount = data.listCart.totalAmount;
         this.totalItems = this.getTotalItems(this.dataCart);
+        this.isLoading = false;
     },
     async setup() {
         const baseImageURL = (await useBaseURL()).value.baseURLImage;
