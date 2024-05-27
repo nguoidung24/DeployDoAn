@@ -243,11 +243,11 @@
                                     <p class="font-semibold text-xl leading-8 text-indigo-600">
                                         {{ Number(totalAmount).toLocaleString() }} vnđ</p>
                                 </div>
-                                <button v-if="Number(totalItems) > 0"
-                                    class="w-full text-center bg-indigo-600 rounded-xl py-3 px-6 font-semibold text-lg text-white transition-all duration-500 hover:bg-indigo-700">
+                                <NuxtLink to="/checkout" v-if="Number(totalItems) > 0"
+                                    class="w-full block text-center bg-indigo-600 rounded-xl py-3 px-6 font-semibold text-lg text-white transition-all duration-500 hover:bg-indigo-700">
                                     Thanh
                                     Toán
-                                </button>
+                                </NuxtLink>
                                 <NuxtLink to="/" v-if="Number(totalItems) <= 0"
                                     class="w-full block text-center bg-indigo-600 rounded-xl py-3 px-6 font-semibold text-lg text-white transition-all duration-500 hover:bg-indigo-700">
                                     Mua sắm
