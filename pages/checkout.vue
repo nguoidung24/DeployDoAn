@@ -8,8 +8,59 @@
                     <!-- ========================================== DANH SÁCH SẢN PHẨM ================================================= -->
                     <div
                         class="col-span-12 xl:col-span-8 lg:pr-8 pt-14 pb-8 lg:py-24 w-full max-xl:max-w-3xl max-xl:mx-auto">
-                        <div>
-                            ........
+                        <div class="grid grid-cols-1 gap-x-5 lg:grid-cols-2">
+                            <div class="">
+                                <p class="text-center font-semibold mb-10">Thông tin đơn hàng</p>
+                                <div v-for="(item, index) in dataCart" :key="index"
+                                    class="flex mb-3 gap-x-3 justify-center">
+                                    <figure>
+                                        <img class="w-32 mx-auto" :src="baseImageURL + item?.product?.thumbnail" alt="">
+                                    </figure>
+                                    <div>
+                                        <p class="font-bold text-lg">{{ item?.product?.product_name }}</p>
+                                        <p class="px-1 py-1 rounded-3xl my-1 border text-center">{{ item?.quantity }}
+                                        </p>
+                                        <p>Giá: {{ Number(item?.price).toLocaleString() }} vnđ</p>
+                                        <p>Tổng: {{ (Number(item?.price) * Number(item?.quantity)).toLocaleString() }}
+                                            vnđ</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-[400px] mx-auto">
+                                <p class="text-center font-semibold">Thông tin khách hàng</p>
+                                <div class="text-left mt-3">
+                                    <p>Họ và tên:</p>
+                                    <input v-model="user_name" placeholder="Họ và tên" class="mt-1 w-full rounded-lg" type="text">
+                                </div>
+                                <div class="text-left mt-3">
+                                    <p>Số điện thoại:</p>
+                                    <input v-model="user_phone" placeholder="Số điện thoại" class="mt-1 w-full rounded-lg" type="text">
+                                </div>
+                                <div class="text-left mt-3">
+                                    <p>Tỉnh, Thành phố:</p>
+                                    <input v-model="user_province" placeholder="Tỉnh, Thành phố" class="mt-1 w-full rounded-lg" type="text">
+                                </div>
+                                <div class="text-left mt-3">
+                                    <p>Quận, Huyện:</p>
+                                    <input v-model="user_distrist" placeholder="Quận, Huyện" class="mt-1 w-full rounded-lg" type="text">
+                                </div>
+                                <div class="text-left mt-3">
+                                    <p>Xã, Phường:</p>
+                                    <input v-model="user_wards" placeholder="Xã, Phường" class="mt-1 w-full rounded-lg" type="text">
+                                </div>
+                                <div class="text-left mt-3">
+                                    <p>Số nhà, đường...:</p>
+                                    <input v-model="user_address" placeholder="Số nhà, đường..." class="mt-1 w-full rounded-lg" type="text">
+                                </div>
+                                <div class="text-left mt-3">
+                                    <p>Phương thức thanh toán:</p>
+                                    <select v-model="payment_method" class="mt-1 w-full rounded-lg">
+                                        <option value="-1">Chọn phương thức thanh toán?</option>
+                                        <option value="0">Thanh toán online</option>
+                                        <option value="1">Thanh toán khi nhận hàng</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                         <div v-if="isLoading">
                             Loading...
@@ -144,12 +195,9 @@
                                     <p class="font-semibold text-xl leading-8 text-indigo-600">
                                         {{ Number(totalAmount).toLocaleString() }} vnđ</p>
                                 </div>
-                                <button
+                                <button @click="handleCheckOut()"
                                     class="w-full block text-center bg-indigo-600 rounded-xl py-3 px-6 font-semibold text-lg text-white transition-all duration-500 hover:bg-indigo-700">
-                                    Tiến
-                                    Hành
-                                    Đặt
-                                    Hàng
+                                    Đặt Hàng
                                 </button>
                             </div>
                         </div>
@@ -170,14 +218,25 @@ export default defineNuxtComponent({
             totalItems: 0,
             isLoadQuantity: false,
             isLoading: true,
+            user_name: null,
+            user_phone: null,
+            user_province: null,
+            user_distrist: null,
+            user_wards: null,
+            user_address: null,
+            payment_method: -1,
         }
     },
     async created() {
         const data = (await useGetCart()).value
         this.dataCart = data.listCart.cart.data;
+        if (this.dataCart?.length == undefined || this.dataCart?.length == 0) {
+            this.$router.push("/");
+        }
         this.totalAmount = data.listCart.totalAmount;
         this.totalItems = this.getTotalItems(this.dataCart);
         this.isLoading = false;
+
     },
     async setup() {
         const baseImageURL = (await useBaseURL()).value.baseURLImage;
@@ -194,6 +253,18 @@ export default defineNuxtComponent({
             });
             return count;
         },
+        handleCheckOut(){
+            const request = {
+                user_name: this.user_name,
+                user_phone: this.user_phone,
+                user_province: this.user_province,
+                user_distrist: this.user_distrist,
+                user_wards: this.user_wards,
+                user_address: this.user_address,
+                cart: this.dataCart
+            }
+            console.log(request);
+        }
 
     }
 });
