@@ -42,3 +42,13 @@ export const useProducts = async (listFilter, page = 1) => {
 
     return data;
 }
+
+export const usePost = async (post_id) => {
+    const BASE_URL = (await (useBaseURL())).value.baseURL
+    let data = null;
+    await fetch(BASE_URL + `Post?post_id=${post_id}`)
+        .then((response) => response.json())
+        .then((response) => data = response);
+
+    return data;
+}

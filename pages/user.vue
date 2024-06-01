@@ -125,9 +125,9 @@
                                 <div class="w-full mx-auto">
                                     <div class="animate-pulse grid lg:p-5 grid-cols-1 lg:grid-cols-2 gap-y-5">
                                         <div v-for="(i, j) in [0,0,0,0,0,0]" :key="j" class="lg:h-64 h-48 w-full flex gap-x-5">
-                                            <div class="h-full rounded-lg w-48 bg-gray-400">
+                                            <div class="h-full rounded-lg w-48 bg-gray-100">
                                             </div>
-                                            <div class="mt-3 *:h-3 *:mt-3 *:bg-gray-400 *:rounded-lg">
+                                            <div class="mt-3 *:h-3 *:mt-3 *:bg-gray-100 *:rounded-lg">
                                                 <p class="w-48"></p>
                                                 <p class="w-56"></p>
                                                 <p class="w-48"></p>
