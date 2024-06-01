@@ -102,9 +102,9 @@
                                                 (Đang kiểm tra thanh toán - Không quá 24h)</p>
                                         </div>
                                         <div>
-                                            <button v-if="`${tabActive}` == '1'"
+                                            <!-- <button v-if="`${tabActive}` == '1'"
                                                 class="bg-red-500 mt-2 text-sm text-white px-3 py-2 rounded-lg ">
-                                                Hủy đơn - chua xong</button>
+                                                Hủy đơn - chua xong</button> -->
                                         </div>
                                         <div v-if="`${tabActive}` == '3'">
                                             <button @click="handleDisplayRating(item)" v-if="!item?.rating"

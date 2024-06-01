@@ -169,8 +169,9 @@ const dataColors = [
     { color_id: "5", code: 'gray', name: 'Gray' },
     { color_id: "6", code: 'green', name: 'Green' },
     { color_id: "7", code: 'brown', name: 'Brown' },
-    { color_id: "8", code: 'Pink', name: 'Pink' },
-    { color_id: "9", code: 'Orange', name: 'Orange' },
+    { color_id: "8", code: 'oink', name: 'Pink' },
+    { color_id: "9", code: 'orange', name: 'Orange' },
+    { color_id: "10", code: 'red', name: 'Red' },
 ]
 
 const dataPrices = [

@@ -56,10 +56,12 @@
                             </p>
                             <p class="text-center py-3 font-semibold"
                                 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
-                                <del class="font-normal text-sm text-gray-500 italic">{{
-                                    (Number(item.price)).toLocaleString() }}</del><sup
-                                    class="font-normal text-sm text-gray-500 italic">đ</sup>
-                                &nbsp;
+                                <span v-if="item.discount != 0">
+                                    <del class="font-normal text-sm text-gray-500 italic">{{
+                                        (Number(item.price)).toLocaleString() }}</del><sup
+                                        class="font-normal text-sm text-gray-500 italic">đ</sup>
+                                    &nbsp;
+                                </span>
                                 <span class="text-red-700">
                                     {{ (Number(item.price) - Number(item.price) * Number(item.discount) /
                                         100).toLocaleString() }}<sup>đ</sup>

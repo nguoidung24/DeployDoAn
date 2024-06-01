@@ -40,10 +40,10 @@
 					<div class=" rounded-xl overflow-hidden min-h-64 shadow-lg my-8">
 						<figure class="relative overflow-hidden">
 							<img class="mx-auto h-40 peer" :src="item.thumbnail" alt="Sunset in the mountains">
-							<button
+							<NuxtLink :to="item.buttonLink"
 								class="absolute font-mono lg:w-fit w-[70%] duration-300 peer-hover:bottom-3 hover:bottom-3 hover:bg-gray-700 text-sm bg-black text-white px-5 lg:text-sm text-[12.5px] rounded-2xl py-2 -bottom-full left-2/4 -translate-x-2/4">
 								{{ item.button }}
-							</button>
+							</NuxtLink>
 						</figure>
 						<div class="px-6 py-4">
 							<div class="font-semibold text-sm mb-2">{{ item.title }} - {{ index % 2 == 0 ?  'Độc quyền tại Samseng' : 'Sản phẩm độc quyền'}}</div>
@@ -79,7 +79,7 @@ export default defineNuxtComponent({
 			this.dataSwiper.push({
                 title: item.product_name,
                 button: 'Xam thêm',
-                buttonLink: '',
+                buttonLink: `/product?id=${item.group_id}`,
                 thumbnail: this.baseImageURL + item.thumbnail,
             })
 		})

@@ -5,7 +5,7 @@ export const useBaseURL = async () => {
         baseURL:"https://admin.thegioidilac.shop/api/",
 
         // baseURLImage: "http://localhost:8008/",
-        baseURLImage:"https://admin.thegioidilac.shop/",
+        baseURLImage:"https://samseng.thegioidilac.shop/",
 
     }
     return useState('dataBaseURL', () => dataBaseURL)

@@ -11,7 +11,7 @@
             opacity: 0,
         }" v-if="!isLoading && dataProduct.length != 0">
             <section class="text-gray-700 body-font overflow-hidden bg-white">
-                <div class="container px-5 py-20 mx-auto">
+                <div class="container px-5 pb-10 pt-20 mx-auto">
                     <div class="lg:w-4/5 mx-auto flex flex-wrap justify-center">
                         <div class="lg:w-2/4 ">
                             <div class="lg:px-32 px-10 w-full relative">
@@ -54,9 +54,9 @@
                         <div class="lg:w-2/4 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
                             <h2 class="text-sm title-font text-gray-500 tracking-widest">
                                 {{ dataProduct[tabActive]?.category?.category_name }}</h2>
-                            <h1 class="text-gray-900 text-3xl title-font font-medium mb-1">
+                            <h1 class="text-gray-900 mt-3 text-3xl title-font font-medium mb-1">
                                 {{ dataProduct[tabActive]?.product_name }}</h1>
-                            <div class="flex mb-4">
+                            <div class="flex mt-3 mb-4">
                                 <span class="flex items-center">
                                     <span v-for="(item, index) in [0, 0, 0, 0, 0]" :key="index">
                                         <svg :fill="index < dataProduct[tabActive]?.rating ? 'currentColor' : 'none'"
@@ -71,12 +71,12 @@
                                         Reviews</span>
                                 </span>
                             </div>
-                            <p>Đã bán: {{ dataProduct[tabActive]?.sold }}</p>
-                            <p>Trạng thái: {{ Number(dataProduct[tabActive]?.quantity) > 0 ? 'Còn hàng' : 'Hết hàng' }}
+                            <p class="mt-3">Đã bán: {{ dataProduct[tabActive]?.sold }}</p>
+                            <p class="mt-3">Trạng thái: {{ Number(dataProduct[tabActive]?.quantity) > 0 ? 'Còn hàng' : 'Hết hàng' }}
                             </p>
 
                             <p class="leading-relaxed text-justify"> </p>
-                            <div class="flex mt-6 items-center pb-5 border-b-2 border-gray-200 mb-5">
+                            <div class="flex mt-5 mb-10 pb-20 items-center border-b-2 border-gray-200">
                                 <div class="flex">
                                     <span class="mr-3">Màu sắc: </span>
 
@@ -202,13 +202,13 @@
 
                                 </div>
                             </div>
-                            <div class="flex justify-between">
+                            <div class="flex  justify-between">
                                 <span class="title-font font-medium italic text-2xl text-gray-900">
-                                    <p class="text-gray-500 text-base"><del>{{
+                                    <p v-if="Number(dataProduct[tabActive]?.discount) != 0" class="text-gray-500 text-base"><del>{{
                                         Number(dataProduct[tabActive]?.price).toLocaleString()
                                             }}</del><sup>vnđ</sup></p>
                                     <p class="text-lg text-gray-500">Chỉ còn: <span class="text-red-600 font-bold">{{
-                                        Number(dataProduct[tabActive]?.price).toLocaleString()
+                                        (Number(dataProduct[tabActive]?.price) - Number(dataProduct[tabActive]?.price) * Number(dataProduct[tabActive]?.discount) / 100).toLocaleString()
                                             }}<sup>vnđ</sup></span></p>
                                 </span>
                                 <p>
@@ -228,60 +228,8 @@
                     </div>
                 </div>
             </section>
-            <main class="w-full gap-x-5 grid lg:grid-cols-5 grid-cols-1 lg:px-32 px-5 min-h-screen">
-                <section class="col-span-2">
-                    <h3 style="text-align: center;"><span style="font-size: 18pt;"><strong>Cấu h&igrave;nh Điện thoại
-                                Tecno
-                                Spark Go 2024</strong></span></h3>
-                    <br>
-                    <table style="border-collapse: collapse; width: 100%; height: 176.344px; border-width: 0px;"
-                        border="1">
-                        <colgroup>
-                            <col style="width: 50%;">
-                            <col style="width: 50%;">
-                        </colgroup>
-                        <tbody>
-                            <tr style="height: 22.3906px;">
-                                <td style="height: 22.3906px; border-width: 0px;">M&agrave;n h&igrave;nh:</td>
-                                <td style="height: 22.3906px; border-width: 0px;"><span class="comma">IPS
-                                        LCD</span><span class="comma">6.56"</span><span class="">HD+</span></td>
-                            </tr>
-                            <tr style="height: 22.3906px;">
-                                <td style="height: 22.3906px; background-color: rgb(206, 212, 217); border-width: 0px;">
-                                    Hệ
-                                    điều h&agrave;nh:</td>
-                                <td style="height: 22.3906px; background-color: rgb(206, 212, 217); border-width: 0px;">
-                                    Android 13 (Go Edition)</td>
-                            </tr>
-                            <tr style="height: 22.3906px;">
-                                <td style="height: 22.3906px; border-width: 0px;">Camera trước:</td>
-                                <td style="height: 22.3906px; border-width: 0px;">8 MP</td>
-                            </tr>
-                            <tr style="height: 22.3906px; background-color: rgb(206, 212, 217);">
-                                <td style="height: 22.3906px; border-width: 0px;">Chip:</td>
-                                <td style="height: 22.3906px; border-width: 0px;">Unisoc T606</td>
-                            </tr>
-                            <tr style="height: 22.3906px;">
-                                <td style="height: 22.3906px; border-width: 0px;">RAM:</td>
-                                <td style="height: 22.3906px; border-width: 0px;">3 GB</td>
-                            </tr>
-                            <tr style="height: 54.3906px; background-color: rgb(206, 212, 217);">
-                                <td style="height: 54.3906px; border-width: 0px;">
-                                    <p class="lileft">Dung lượng lưu trữ:</p>
-                                </td>
-                                <td style="height: 54.3906px; border-width: 0px;">64 GB</td>
-                            </tr>
-                            <tr style="height: 10px;">
-                                <td style="height: 10px; border-width: 0px;">
-                                    <p class="lileft">Pin, Sạc:</p>
-                                </td>
-                                <td style="height: 10px; border-width: 0px;"><span class="comma">5000 mAh</span><span
-                                        class="">10 W</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </section>
-                <section class="col-span-3">
+            <main class="w-full gap-x-5 grid lg:grid-cols-5 grid-cols-1 lg:px-48 px-5 min-h-screen">
+                <section class="col-span-full">
                     <div class="no-tailwind">
                         <h3>L&agrave; biểu tượng của sự vượt trội tr&ecirc;n thị trường di động,&nbsp;<a
                                 title="Tham khảo điện thoại vivo V30e 5G 8GB tại Thegioididong.com"
@@ -369,7 +317,6 @@
                             nghiệm
                             gần như thực tế cho người d&ugrave;ng.</p>
                     </div>
-
                 </section>
             </main>
         </div>
@@ -427,7 +374,7 @@ export default defineNuxtComponent({
         this.dataProduct = data.data;
         this.isLoading = false;
 
-        console.log(data.data);
+        
     },
 
     async setup() {
