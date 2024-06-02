@@ -52,7 +52,7 @@
 
                         </div>
                         <div class="lg:w-2/4 w-full lg:pl-10 lg:pb-6 mt-6 lg:mt-0">
-                            <h2 class="text-sm title-font text-gray-500 tracking-widest">
+                            <h2 class="text-sm title-font text-gray-500 uppercase tracking-widest">
                                 {{ dataProduct[tabActive]?.category?.category_name }}</h2>
                             <h1 class="text-gray-900 mt-3 text-3xl title-font font-medium mb-1">
                                 {{ dataProduct[tabActive]?.product_name }}</h1>
@@ -261,8 +261,8 @@
                                 <p>
                                     <button v-if="Number(dataProduct[tabActive]?.quantity) > 0"
                                         @click="addToCart(dataProduct[tabActive])"
-                                        class="flex ml-auto text-white bg-red-500 border-0 py-2 px-6 focus:outline-none hover:bg-red-600 rounded">
-                                        Thêm vào giỏ hàng
+                                        class="flex ml-auto text-white bg-black border-0 py-2 px-6 focus:outline-none hover:bg-green-700 rounded">
+                                        Thêm vào giỏ hàng 🛒
                                     </button>
                                     <button disabled v-if="Number(dataProduct[tabActive]?.quantity) <= 0"
                                         class="flex ml-auto text-white bg-gray-500 border-0 py-2 px-6 focus:outline-none rounded">

@@ -78,7 +78,7 @@ export default defineNuxtComponent({
 		this.dataIndexMonopolyProducts.map((item,index) => {
 			this.dataSwiper.push({
                 title: item.product_name,
-                button: 'Xam thêm',
+                button: 'Xem thêm',
                 buttonLink: `/product?id=${item.group_id}`,
                 thumbnail: this.baseImageURL + item.thumbnail,
             })

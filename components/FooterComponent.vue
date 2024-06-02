@@ -20,21 +20,21 @@ export default {
             </NuxtLink>
             <ul class="flex flex-wrap items-center mb-6 text-sm font-medium sm:mb-0 ">
                 <li>
-                    <a href="#" class="hover:underline me-4 md:me-6">About</a>
+                    <a href="#" class="hover:underline me-4 md:me-6">Trang chủ</a>
                 </li>
                 <li>
-                    <a href="#" class="hover:underline me-4 md:me-6">Privacy Policy</a>
+                    <a href="#" class="hover:underline me-4 md:me-6">Sản phẩm</a>
                 </li>
                 <li>
-                    <a href="#" class="hover:underline me-4 md:me-6">Licensing</a>
+                    <a href="#" class="hover:underline me-4 md:me-6">Về chúng tôi</a>
                 </li>
                 <li>
-                    <a href="#" class="hover:underline">Contact</a>
+                    <a href="#" class="hover:underline">Liên hệ chúng tôi</a>
                 </li>
             </ul>
         </div>
         <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-        <span class="block text-sm  sm:text-center ">© 2024 <a href="https://flowbite.com/" class="hover:underline">Nuyễn Văn Tùng</a>. All Rights Reserved.</span>
+        <span class="block text-sm  sm:text-center ">© 2024 <a href="#" class="hover:underline">Nuyễn Văn Tùng</a>. All Rights Reserved.</span>
     </div>
 </footer>
 
