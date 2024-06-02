@@ -51,7 +51,7 @@
                             </div>
 
                         </div>
-                        <div class="lg:w-2/4 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
+                        <div class="lg:w-2/4 w-full lg:pl-10 lg:pb-6 mt-6 lg:mt-0">
                             <h2 class="text-sm title-font text-gray-500 tracking-widest">
                                 {{ dataProduct[tabActive]?.category?.category_name }}</h2>
                             <h1 class="text-gray-900 mt-3 text-3xl title-font font-medium mb-1">
@@ -77,13 +77,13 @@
                             </p>
 
                             <p class="leading-relaxed text-justify"> </p>
-                            <div class=" mt-1 mb-5 pb-3 items-center border-b-2 border-gray-200">
+                            <div class=" mt-2 mb-5 pb-3 items-center border-b-2 border-gray-200">
                                 <div class="flex w-full">
                                     <span class="mr-3">Màu sắc: </span>
 
                                     <button v-for="(item, index) in dataProduct" :key="index"
                                         :style="`background-color: ${item.color.code};`" @click="tabTo(index)"
-                                        class="border-2 relative border-gray-300 me-4 rounded-full w-6 h-6">
+                                        class="border-2 relative border-gray-300 me-4 rounded-full w-5 h-5">
                                         <span v-if="index == tabActive"
                                             class="absolute -bottom-3 -translate-y-full left-2/4 -translate-x-2/4"
                                             name="md-arrowdropup-twotone" color="black" scale="0.9">

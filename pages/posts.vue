@@ -1,12 +1,15 @@
 <template>
     <div>
-        <div class="w-full lg:px-48 px-5 min-h-screen" v-if="postData">
-            <p class=" mt-10 mb-16 font-bold text-3xl text-center">{{ postData?.post_name }}</p>    
+        <div class="w-full lg:px-48 px-5 min-h-screen" v-if="!isLoading && postData">
+            <p class=" mt-10 mb-5 font-bold text-3xl text-center">{{ postData?.post_name }}</p>    
             <div class="no-tailwind" v-html="postData?.content">
 
             </div>
         </div>
-        <div v-if="!postData" class="text-center">
+        <div v-if="isLoading">
+            <p class="text-center">Loading...</p>
+        </div>
+        <div v-if="!isLoading && !postData" class="text-center">
             <p>Không tìm thấy bài viết
                 -
                 <NuxtLink to="/" class="text-blue-500 " role="button">
@@ -22,12 +25,19 @@ export default defineNuxtComponent({
         return {
             postId: null,
             postData: null,
+            isLoading: true,
         }
     },
     async created() {
         this.postId = this.$route.query.id
 
-        this.postData = await usePost(this.postId);
+        try{
+            this.postData = await usePost(this.postId);
+
+        }catch(e){
+
+        }
+        this.isLoading = false;
         
     },
     setup(props) {

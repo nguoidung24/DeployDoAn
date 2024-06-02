@@ -67,7 +67,7 @@
                                     {{ item?.button }}
                                 </NuxtLink>
                                 <p
-                                    class="absolute z-0 lg:bottom-10 transition-all duration-200 peer-hover/a:-bottom-full hover:-bottom-full peer-hover/btn:-bottom-full bottom-2 text-center font-bold lg:text-sm md:text-sm text-[12.5px] w-full lg:px-16 md:px-7 px-5 left-2/4 -translate-x-2/4">
+                                    class="absolute z-0 lg:bottom-10 transition-all duration-200 peer-hover/a:-bottom-full hover:-bottom-full peer-hover/btn:-bottom-full bottom-2 text-center lg:font-bold font-semibold lg:text-sm text-[10.5px] w-full lg:px-16 md:px-7 px-5 left-2/4 -translate-x-2/4">
                                     {{ item?.smaill_text?.split('$tach_ra$')[key] }}
                                 </p>
                             </figure>

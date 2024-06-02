@@ -41,11 +41,11 @@
 						<figure class="relative overflow-hidden">
 							<img class="mx-auto h-40 peer" :src="item.thumbnail" alt="Sunset in the mountains">
 							<NuxtLink :to="item.buttonLink"
-								class="absolute font-mono lg:w-fit w-[70%] duration-300 peer-hover:bottom-3 hover:bottom-3 hover:bg-gray-700 text-sm bg-black text-white px-5 lg:text-sm text-[12.5px] rounded-2xl py-2 -bottom-full left-2/4 -translate-x-2/4">
+								class="absolute text-center font-mono lg:w-fit w-[70%] duration-300 peer-hover:bottom-3 hover:bottom-3 hover:bg-gray-700 text-sm bg-black text-white px-5 lg:text-sm text-[12.5px] rounded-2xl py-2 -bottom-full left-2/4 -translate-x-2/4">
 								{{ item.button }}
 							</NuxtLink>
 						</figure>
-						<div class="px-6 py-4">
+						<div class="px-6 overflow-hidden py-4">
 							<div class="font-semibold text-sm mb-2">{{ item.title }} - {{ index % 2 == 0 ?  'Độc quyền tại Samseng' : 'Sản phẩm độc quyền'}}</div>
 						</div>
 					</div>

@@ -13,8 +13,8 @@ export const useCategories = async () => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            action: 'getById',
-            menu_id: '2'
+            action: 'getAll',
+            // menu_id: '2'
         })
     };
 

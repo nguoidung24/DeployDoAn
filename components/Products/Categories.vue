@@ -1,35 +1,53 @@
 <template>
     <div class="text-[12.5px]">
-        <div class="lg:col-span-full">
+        <div v-if="isLoading" class="mb-5">
+            <p class="px-2">Loading...</p>
+        </div>
 
-            <div v-if="data" class="grid grid-cols-3 md:grid-cols-7 gap-x-2 gap-y-2 px-2">
-                <p :style="filters?.category_id == undefined || filters?.category_id == 0 ? 'border-color:rgba(0,0,0,.5); font-weight:bold; text-decoration: underline;' : ''"
-                    @click="handleChangeFilters('category_id', 0)"
-                    class="hover:cursor-pointer border rounded-lg py-2 flex items-center justify-center font-lg gap-x-2">
-                    <svg fill="#000000" viewBox="0 0 32 32" width="20" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                        <g id="SVGRepo_iconCarrier">
-                            <title>border-all</title>
-                            <path
-                                d="M29 2.25h-26c-0.414 0-0.75 0.336-0.75 0.75v0 26c0 0.414 0.336 0.75 0.75 0.75h26c0.414-0 0.75-0.336 0.75-0.75v0-26c-0-0.414-0.336-0.75-0.75-0.75v0zM28.25 15.25h-11.5v-11.5h11.5zM15.25 3.75v11.5h-11.5v-11.5zM3.75 16.75h11.5v11.5h-11.5zM16.75 28.25v-11.5h11.5v11.5z">
-                            </path>
-                        </g>
-                    </svg> <span>
-                        Tất cả
-                    </span>
-                </p>
-                <p v-for="(item, index) in data" :key="index"
+        <div v-if="!isLoading" class="mb-5 text-sm grid grid-cols-3 md:grid-cols-7 gap-x-2 gap-y-2 px-2">
+            <span
+                :class="`hover:cursor-pointer flex items-center justify-center gap-x-1 ${menuActive == -1 ? ' font-semibold ' : ''}`"
+                @click="handleActiveMenu(-1)">
+                <span :class="`${menuActive == -1 ? 'underline ' : ''}`">Tất cả</span>
+                <span>{{ menuActive == -1 ? '🖐' : '✨' }}</span>
+            </span>
+            <span v-for="(item, index) in menu" :key="index" @click="handleActiveMenu(index)"
+                :class="`border-l hover:cursor-pointer flex items-center justify-center gap-x-1 ${menuActive == index ? ' font-semibold ' : ''}`">
+                <span :class="`${menuActive == index ? 'underline ' : ''}`">{{ item?.display_name }}</span>
+                <span>{{ menuActive == index ? '👇' : '✊' }}</span>
+            </span>
+
+        </div>
+        <div v-if="menuActive > -1 && menu?.length > 0" class="lg:col-span-full">
+            <div v-if="!isLoading && data[menuActive]?.menu?.length > 0"
+                class="grid grid-cols-3 md:grid-cols-7 gap-x-2 gap-y-2 px-2">
+
+                <p v-for="(item, index) in data[menuActive]?.menu" :key="index"
                     @click="handleChangeFilters('category_id', item.category_id)"
                     :style="filters?.category_id == item.category_id ? 'border-color:rgba(0,0,0,.5); font-weight:bold; text-decoration: underline;' : ''"
-                    :class="`hover:cursor-pointer border rounded-lg py-2 flex items-center justify-center font-lg gap-x-2`">
+                    :class="`hover:cursor-pointer border rounded-lg py-2 flex items-center justify-center font-lg gap-x-2`"
+                    v-motion :initial="{
+                        opacity: 0,
+                        y: 100,
+                    }" :enter="{
+                        opacity: 1,
+                        y: 0,
+                    }" :leave="{
+                        y: -100,
+                        opacity: 0,
+                    }" :delay="index * 50">
                     <img :src="baseImageURL + item.thumbnail" alt="" class="size-6 ms-auto">
                     <span class="me-auto">
                         {{ item.category_name }}
                     </span>
                 </p>
             </div>
+            <div class="text-center" v-if="!isLoading && !data[menuActive]?.menu?.length > 0">
+                <p v-if="menuActive != -1" class="p-3">Chưa có danh mục - có thể chúng tôi sẽ ra mắt trong thời gian sắp
+                    tới !</p>
+            </div>
         </div>
+
     </div>
 </template>
 <script lang="js">
@@ -38,16 +56,32 @@ export default defineNuxtComponent({
     data() {
         return {
             data: null,
+            menuActive: -1,
+            menu: null,
+            isLoading: true,
         }
     },
     async created() {
         const data = (await useCategories()).value
-        this.data = data.listCategories?.data[0]?.menu
+        let thisData = data.listCategories?.data;
+        if (!thisData?.length) {
+            this.menuActive = -1;
+        }
+        this.menu = this.data = thisData;
+        this.isLoading = false;
     },
     async setup() {
         const baseImageURL = (await useBaseURL()).value.baseURLImage;
         return {
             baseImageURL,
+        }
+    },
+    methods: {
+        handleActiveMenu(index) {
+            this.menuActive = index;
+            if (index == -1) {
+                this.handleChangeFilters('category_id', 0)
+            }
         }
     }
 })
