@@ -339,7 +339,7 @@ export default defineNuxtComponent({
 
         this.post_id = this.dataProduct[this.tabActive]?.post_id;
         if (this.post_id) {
-            this.dataPost = await usePost(1);
+            this.dataPost = await usePost(this.post_id);
         }
 
         this.isLoading = false;
