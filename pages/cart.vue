@@ -18,7 +18,7 @@
                     <div
                         class="col-span-12 xl:col-span-8 lg:pr-8 pt-14 pb-8 lg:py-24 w-full max-xl:max-w-3xl max-xl:mx-auto">
                         <div class="flex items-center justify-between pb-8 border-b border-gray-300">
-                            <h2 class="font-manrope font-bold text-3xl leading-10 text-black">Giỏi Hàng</h2>
+                            <h2 class="font-manrope font-bold text-3xl leading-10 text-black">Giỏ Hàng</h2>
                             <h2 class="font-manrope font-bold text-xl leading-8 text-gray-600">{{ totalItems }}
                                 Sản phẩm</h2>
                         </div>
