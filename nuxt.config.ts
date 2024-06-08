@@ -2,7 +2,11 @@
 export default defineNuxtConfig({
   devtools: { enabled: false },
   css: ['~/assets/css/main.css'],
-  modules: ['@vueuse/motion/nuxt'],
+  modules: [
+    '@vueuse/motion/nuxt',
+    '@tresjs/nuxt',
+    '@vueuse/nuxt'
+  ],
   runtimeConfig: {
     public: {
       motion: {

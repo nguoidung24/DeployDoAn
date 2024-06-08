@@ -6,7 +6,8 @@ export default defineNuxtRouteMiddleware((to, from) => {
         'index',
         'products',
         'product',
-        'posts'
+        'posts',
+        'about'
     ];
 
     const getLoginInfo = Cookies.get('isLogin');

@@ -4,7 +4,7 @@
             <div @click="goToHome()" class="w-[100px] md:w-[150px] flex items-center my-6 hover:cursor-pointer">
                 <!-- <img src="https://i.postimg.cc/MZCBXb1K/logo.png" alt="LOGO" srcset=""> -->
                 <!-- <img src="https://thegioidilac.shop/_nuxt/img/thegioidilac_logo.b7f9124.png" class="h-10" alt="LOGO" srcset=""> -->
-                <svg id="e3Y54xRkUCc1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                <svg fill="currentcolor" id="e3Y54xRkUCc1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                     viewBox="0 0 120 32" shape-rendering="geometricPrecision" text-rendering="geometricPrecision">
                     <rect width="120" height="32" rx="0" ry="0" fill="none" />
                     <path
@@ -17,7 +17,7 @@
                     class="navLinks duration-500 absolute md:static md:w-auto w-full md:h-auto h-[85vh] bg-white flex md:items-center gap-[1.5vw] top-[100%] left-[-100%] px-5 md:py-0 py-5 ">
                     <ul class="flex md:flex-row flex-col md:items-center md:gap-[2vw] gap-8">
                         <li v-for="(item, index) in dataMenu" :key="index"
-                            class="relative max-w-fit pr-3 md:pr-0 py-1 after:bg-gradient-to-r from-[#2b68e0] to-[#e710ea]  after:absolute after:h-1 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300">
+                            class="relative max-w-fit pr-3 md:pr-0 py-1 after:bg-gradient-to-r from-[#af5213] to-[#849c19]  after:absolute after:h-1 after:w-0 after:bottom-0 after:left-0 hover:after:w-full after:transition-all after:duration-300">
                             <a @click="handleClickMenu(item.link)" class="hover:cursor-pointer">{{ item.text }}</a>
                         </li>
                     </ul>
@@ -34,7 +34,7 @@
                         <NuxtLink to="/cart" class="relative">
                             <v-icon name="md-shoppingcart" />
                             <span
-                                class="absolute bg-red-600 text-white -right-3 -top-2 text-[13px] size-5 flex justify-center items-center rounded-full">
+                                class="cart-counter absolute bg-red-600 text-white -right-3 -top-2 text-[13px] size-5 flex justify-center items-center rounded-full">
                                 {{ Number(totalCartItems) > 9 ? '9+' : totalCartItems }}
                             </span>
                         </NuxtLink>
@@ -108,7 +108,7 @@ const dataMenu = [
     },
     {
         text: "Về chúng tôi",
-        link: "/",
+        link: "/about",
     },
     {
         text: "Liên hệ với chúng tôi",
