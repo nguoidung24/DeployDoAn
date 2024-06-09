@@ -129,10 +129,10 @@ definePageMeta({
                 opacity: 0,
                 y: -100,
             }" :enter="{
-            y: 0,
-            opacity: 1,
+                y: 0,
+                opacity: 1,
 
-        }" :duration="5000">
+            }" :duration="5000">
                 <TresCanvas :shadows="true" :shadow-map-type="BasicShadowMap" :tone-mapping="NoToneMapping"
                     :output-color-space="SRGBColorSpace" :alpha="false" window-size clear-color="black">
                     <TresPerspectiveCamera :position="[0, 0, camera]" />
@@ -151,7 +151,7 @@ definePageMeta({
     </ClientOnly>
 </template>
 <style>
-.about-menu * {
+.about-menu *:not(.form-search-lable, #default-search,  .cart-counter, .form-search-button) {
     background-color: transparent !important;
     color: #e6e60d !important;
 }
