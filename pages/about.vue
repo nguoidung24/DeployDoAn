@@ -113,9 +113,12 @@ definePageMeta({
 
 <template>
     <ClientOnly>
-        <div style="height: 500vh;background-color: black; overflow: hidden;">
+        <div style="background-color: black; overflow: hidden;">
             <div class="about-menu">
                 <HeaderComponent />
+            </div>
+            <div id="ok" class="h-[200vh] bg-black w-screen">
+
             </div>
             <!-- <div style="position: fixed; top: 0; right: 10px;color: white; z-index: 99;">
                 <p style="padding: 0px 13px; border: 1px solid green;color: green; font-weight: 700;">
@@ -151,11 +154,10 @@ definePageMeta({
     </ClientOnly>
 </template>
 <style>
-.about-menu *:not(.form-search-lable, #default-search,  .cart-counter, .form-search-button) {
-    background-color: black !important;
+.about-menu *:not(.form-search-lable, .form-search-lable *, .cart-counter) {
     color: #e6e60d !important;
+    background-color: black !important;
 }
-
 
 .about-menu .cart-counter {
     color: white !important;
