@@ -125,7 +125,7 @@ definePageMeta({
                 <p> textRotateY: {{ Number(textRotateY).toFixed(3) }}</p>
                 </p>
             </div> -->
-            <div class="fixed top-0 lef-0 w-screen h-screen" v-motion :initial="{
+            <div class="fixed top-0 left-0 w-screen h-screen" v-motion :initial="{
                 opacity: 0,
                 y: -100,
             }" :enter="{
@@ -152,7 +152,7 @@ definePageMeta({
 </template>
 <style>
 .about-menu *:not(.form-search-lable, #default-search,  .cart-counter, .form-search-button) {
-    background-color: transparent !important;
+    background-color: black !important;
     color: #e6e60d !important;
 }
 
