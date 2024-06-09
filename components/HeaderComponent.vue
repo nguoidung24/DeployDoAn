@@ -112,7 +112,7 @@ const dataMenu = [
     },
     {
         text: "Liên hệ với chúng tôi",
-        link: "/",
+        link: "/contact",
     }
 ]
 

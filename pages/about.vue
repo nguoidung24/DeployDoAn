@@ -113,7 +113,7 @@ definePageMeta({
 
 <template>
     <ClientOnly>
-        <div style="height: 500vh;background-color: black;">
+        <div style="height: 500vh;background-color: black; overflow: hidden;">
             <div class="about-menu">
                 <HeaderComponent />
             </div>
@@ -125,7 +125,14 @@ definePageMeta({
                 <p> textRotateY: {{ Number(textRotateY).toFixed(3) }}</p>
                 </p>
             </div> -->
-            <div>
+            <div class="fixed top-0 lef-0 w-screen h-screen" v-motion :initial="{
+                opacity: 0,
+                y: -100,
+            }" :enter="{
+            y: 0,
+            opacity: 1,
+
+        }" :duration="5000">
                 <TresCanvas :shadows="true" :shadow-map-type="BasicShadowMap" :tone-mapping="NoToneMapping"
                     :output-color-space="SRGBColorSpace" :alpha="false" window-size clear-color="black">
                     <TresPerspectiveCamera :position="[0, 0, camera]" />
@@ -146,8 +153,9 @@ definePageMeta({
 <style>
 .about-menu * {
     background-color: transparent !important;
-    color: yellow !important;
+    color: #e6e60d !important;
 }
+
 
 .about-menu .cart-counter {
     color: white !important;
