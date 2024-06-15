@@ -156,7 +156,7 @@ const about = [
             <div class="about-menu">
                 <HeaderComponent />
             </div>
-            <div class="text-white text-justify p-5">
+            <div class="text-white text-justify p-5 lg:hidden block">
                 <div class="absolute top-0 left-0  w-screen h-screen">
                         <Heart />
                     </div>
