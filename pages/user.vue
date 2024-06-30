@@ -276,7 +276,7 @@ export default defineNuxtComponent({
             isInfo: false,
             userInfo: null,
             showChangePassword: false,
-            key: Cookies.get('customer_name').split(' ').pop()[0],
+            key: '#',
             tab: {
                 '1': { text: 'Chờ Duyệt', value: [] },
                 '2': { text: 'Đang Giao', value: [] },
@@ -301,6 +301,12 @@ export default defineNuxtComponent({
         this.user_name = this.userInfo?.customer_name;
         this.user_phone = this.userInfo?.phone;
         this.user_password = this.userInfo?.password;
+        try {
+            this.key = this.userInfo?.customer_name?.split(' ').pop()[0]
+        }
+        catch (e) {
+
+        }
         try {
             this.user_province = address[0];
             this.user_distrist = address[1];
