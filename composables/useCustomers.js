@@ -23,3 +23,45 @@ export const useCustomer = async () => {
         .catch((error) => console.error(error));
     return data;
 }
+
+
+export const useChangeInfo = async (att) => {
+    const BASE_URL = (await (useBaseURL())).value.baseURL
+
+    let data = null;
+
+    const requestOptions = {
+        method: "POST",
+        body: JSON.stringify(att),
+        redirect: "follow",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    };
+
+    await fetch(BASE_URL + "customer-updated", requestOptions)
+        .then((response) => response.json())
+        .then((result) => data = result)
+        .catch((error) => console.error(error));
+    return data;
+}
+export const useCustomerInfo = async (att) => {
+    const BASE_URL = (await (useBaseURL())).value.baseURL
+
+    let data = null;
+
+    const requestOptions = {
+        method: "POST",
+        body: JSON.stringify(att),
+        redirect: "follow",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    };
+
+    await fetch(BASE_URL + "customers-info", requestOptions)
+        .then((response) => response.json())
+        .then((result) => data = result)
+        .catch((error) => console.error(error));
+    return data;
+}

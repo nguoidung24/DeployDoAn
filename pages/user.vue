@@ -6,12 +6,14 @@
                     <div class="col-span-4 sm:col-span-3">
                         <div class="bg-white shadow rounded-lg p-6">
                             <div class="flex flex-col items-center">
-                                <img src="data:image/webp;base64,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"
-                                    class="w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0">
-
-                                </img>
+                                <span src="" class="w-32 h-32 relative bg-gray-300 rounded-full mb-4 shrink-0">
+                                    <span
+                                        class="text-[4rem] font-bold absolute top-2/4 left-2/4 -translate-x-2/4 -translate-y-2/4">
+                                        {{ key }}
+                                    </span>
+                                </span>
                                 <h1 class="text-xl font-bold">
-                                    Nguyễn Tất Niên
+                                    {{ user_name }}
                                 </h1>
                                 <p class="italic text-gray-700">
                                     samseng.shop
@@ -21,10 +23,14 @@
                                         class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
                                         Đăng xuất
                                     </button>
-                                    <!-- <a href="#"
+                                    <button v-if="!isInfo" @click="handleIsInfo()"
                                         class="bg-gray-300 hover:bg-gray-400 text-gray-700 py-2 px-4 rounded">
-                                        Đổi mật khẩu
-                                    </a> -->
+                                        Thông tin 📝
+                                    </button>
+                                    <button v-if="isInfo" @click="handleIsInfo()"
+                                        class="bg-gray-300 hover:bg-gray-400 text-gray-700 py-2 px-4 rounded">
+                                        Đơn hàng 📦
+                                    </button>
                                 </div>
                             </div>
                             <hr class="my-6 border-t border-gray-300">
@@ -47,7 +53,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-span-4 relative sm:col-span-9">
+                    <div v-if="!isInfo" class="col-span-4 relative sm:col-span-9">
                         <div class="bg-white shadow rounded-lg p-6 min-h-[100vh]">
                             <div v-if="!isLoading" class="grid grid-cols-1 lg:grid-cols-2">
                                 <div v-for="(item, index) in tab[`${tabActive}`]?.value" :key="index"
@@ -124,7 +130,8 @@
                             <div v-if="isLoading">
                                 <div class="w-full mx-auto">
                                     <div class="animate-pulse grid lg:p-5 grid-cols-1 lg:grid-cols-2 gap-y-5">
-                                        <div v-for="(i, j) in [0,0,0,0,0,0]" :key="j" class="lg:h-64 h-48 w-full flex gap-x-5">
+                                        <div v-for="(i, j) in [0, 0, 0, 0, 0, 0]" :key="j"
+                                            class="lg:h-64 h-48 w-full flex gap-x-5">
                                             <div class="h-full rounded-lg w-48 bg-gray-100">
                                             </div>
                                             <div class="mt-3 *:h-3 *:mt-3 *:bg-gray-100 *:rounded-lg">
@@ -139,6 +146,96 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div v-if="isInfo" class="col-span-4 relative sm:col-span-9">
+                        <div class="bg-white shadow rounded-lg p-6 min-h-[100vh]">
+                            <div>
+                                <p class="text-center text-xl lg:text-2xl font-bold my-5">Thông Tin Của Bạn</p>
+                            </div>
+                            <div class="grid grid-cols-1 gap-3 gap-x-10 lg:px-20 lg:grid-cols-2">
+
+                                <div class="mb-4">
+                                    <label class="block text-gray-700 text-sm font-bold mb-2">
+                                        Tên người dùng
+                                    </label>
+                                    <input v-model="user_name"
+                                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        type="text" placeholder="Tên người dùng">
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block text-gray-700 text-sm font-bold mb-2">
+                                        Địa chỉ - Tỉnh, Thành phố
+                                    </label>
+                                    <input v-model="user_province"
+                                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        type="text" placeholder="Tỉnh, Thành Phố">
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block text-gray-700 text-sm font-bold mb-2">
+                                        Địa chỉ - Quận, Huyện
+                                    </label>
+                                    <input v-model="user_distrist"
+                                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        type="text" placeholder="Quận, Huyện">
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block text-gray-700 text-sm font-bold mb-2">
+                                        Địa chỉ - Xã, Phường
+                                    </label>
+                                    <input v-model="user_wards"
+                                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        type="text" placeholder="Xã, Phường">
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block text-gray-700 text-sm font-bold mb-2">
+                                        Địa chỉ - Số nhà, đường
+                                    </label>
+                                    <input v-model="user_address"
+                                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        type="text" placeholder="Số nhà, đường">
+                                </div>
+                                <div class="mb-4">
+                                    <label class="block text-gray-700 text-sm font-bold mb-2">
+                                        Số điện thoại
+                                    </label>
+                                    <input v-model="user_phone"
+                                        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                        type="text" placeholder="Số điện thoại">
+                                </div>
+
+                                <div :class="`${showChangePassword ? ' hidden ' : ''} mb-4`">
+                                    <label class="block text-gray-700 text-sm font-bold mb-2">
+                                        Mật khẩu mới
+                                    </label>
+                                    <div v-if="!showPassword" class="relative">
+                                        <input
+                                            class="shadow appearance-none border rounded w-full py-2 px-3  text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                            type="password" v-model="user_password" placeholder="Nhập mật khẩu mới">
+                                        <span @click="handleShowPassword()"
+                                            class="absolute cursor-pointer top-2/4 right-2 px-3 bg-white rounded -translate-y-2/4">🙈</span>
+                                    </div>
+                                    <div v-if="showPassword" class="relative">
+                                        <input
+                                            class="shadow appearance-none border rounded w-full py-2 px-3  text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                            type="text" v-model="user_password" placeholder="Nhập mật khẩu mới">
+                                        <span @click="handleShowPassword()"
+                                            class="absolute cursor-pointer top-2/4 right-2 px-3 bg-white rounded -translate-y-2/4">🙉</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-4 mt-3 lg:px-20">
+                                <button @click="handleChangeInfo()"
+                                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-8 rounded focus:outline-none focus:shadow-outline"
+                                    type="button">
+                                    Lưu
+                                </button>
+                                <!-- <button @click="handleShowChangePassword()"
+                                    class="ms-2 text-sm text-gray-600 py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                                    type="button">
+                                    {{ showChangePassword ? 'Thay mật khẩu?' : 'Bỏ Thay mật khẩu' }}
+                                </button> -->
                             </div>
                         </div>
                     </div>
@@ -175,17 +272,45 @@ export default defineNuxtComponent({
             dataRating: null,
             tabActive: '1',
             ratingVal: 4,
+            showPassword: true,
+            isInfo: false,
+            userInfo: null,
+            showChangePassword: false,
+            key: Cookies.get('customer_name').split(' ').pop()[0],
             tab: {
                 '1': { text: 'Chờ Duyệt', value: [] },
                 '2': { text: 'Đang Giao', value: [] },
                 '3': { text: 'Đã Giao', value: [] },
                 '4': { text: 'Thất Bại', value: [] },
                 '-1': { text: 'Đơn bị hủy', value: [] },
-            }
+            },
+
+            user_name: '',
+            user_phone: '',
+            user_province: "",
+            user_distrist: "",
+            user_wards: "",
+            user_password: "",
+            user_address: "",
         }
     },
 
     async created() {
+        await this.getCustomerInfo();
+        const address = this.userInfo?.address?.split('$tach_ra$');
+        this.user_name = this.userInfo?.customer_name;
+        this.user_phone = this.userInfo?.phone;
+        this.user_password = this.userInfo?.password;
+        try {
+            this.user_province = address[0];
+            this.user_distrist = address[1];
+            this.user_wards = address[2];
+            this.user_address = address[3];
+        } catch (e) {
+
+        }
+
+
         const data = await useCustomer();
         data?.data?.map((item, index) => {
             this.tab[`${item?.status}`]?.value?.push(item);
@@ -197,9 +322,16 @@ export default defineNuxtComponent({
             if (confirm('Bạn đang đăng xuất?')) {
                 Cookies.remove("isLogin");
                 Cookies.remove("SSID");
+
                 this.$router.push("/login");
             }
 
+        },
+        handleShowPassword() {
+            this.showPassword = !this.showPassword;
+        },
+        handleShowChangePassword() {
+            this.showChangePassword = !this.showChangePassword;
         },
         handleChangeTab(item) {
             this.tabActive = `${item}`;
@@ -210,6 +342,31 @@ export default defineNuxtComponent({
                 order_id: item?.order_id,
                 product_id: item?.product?.product_id
             };
+        },
+        async handleIsInfo() {
+            this.isInfo = !this.isInfo;
+        },
+        async handleChangeInfo() {
+
+
+            const att = {
+                'id': Cookies.get('SSID'),
+                'customer_name': this.user_name,
+                'phone': this.user_phone,
+                'address': this.user_province + '$tach_ra$' + this.user_distrist + '$tach_ra$' + this.user_wards + this.user_address + '$tach_ra$' + this.user_phone
+            }
+
+            if (this.user_password) {
+                att.password = this.user_password;
+            }
+
+            const save = await useChangeInfo(att);
+            if (save?.success) {
+                await this.getCustomerInfo();
+                return alert("Đã lưu!");
+            } else {
+                return alert("Thất bại, có thể do số điện thoại trùng hoặc không thay đổi!");
+            }
         },
         async handleRating(att) {
             if (Number(this.ratingVal) <= 5 && Number(this.ratingVal) >= 1) {
@@ -235,8 +392,14 @@ export default defineNuxtComponent({
                 });
                 this.isLoading = false;
             }
-        }
+        },
+        // =============================================== Get Customer Info =============================================== 
+        async getCustomerInfo() {
+            const id = Cookies.get('SSID');
+            this.userInfo = await useCustomerInfo({ 'id': id });
+        },
     },
+
     async setup() {
         const baseImageURL = (await useBaseURL()).value.baseURLImage
         return {

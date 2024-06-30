@@ -251,12 +251,12 @@
                                     <p v-if="Number(dataProduct[tabActive]?.discount) != 0"
                                         class="text-gray-500 text-base"><del>{{
                                             Number(dataProduct[tabActive]?.price).toLocaleString()
-                                            }}</del><sup>vnđ</sup></p>
+                                        }}</del><sup>vnđ</sup></p>
                                     <p class="text-lg text-gray-500">Chỉ còn: <span class="text-red-600 font-bold">{{
                                         (Number(dataProduct[tabActive]?.price) -
                                             Number(dataProduct[tabActive]?.price) *
                                             Number(dataProduct[tabActive]?.discount) / 100).toLocaleString()
-                                            }}<sup>vnđ</sup></span></p>
+                                    }}<sup>vnđ</sup></span></p>
                                 </span>
                                 <p>
                                     <button v-if="Number(dataProduct[tabActive]?.quantity) > 0"
@@ -364,20 +364,24 @@ export default defineNuxtComponent({
         },
         async addToCart(product) {
             const customer_id = Cookie.get('SSID');
-            let action = 'create';
-            const request = {
-                action: action,
-                customer_id: customer_id,
-                price: product?.price,
-                product_id: product?.product_id,
-                quantity: 1,
-                status: 0,
-                payment_date: ''
-            }
-            useChangeCart(request);
+            if (customer_id) {
+                let action = 'create';
+                const request = {
+                    action: action,
+                    customer_id: customer_id,
+                    price: product?.price,
+                    product_id: product?.product_id,
+                    quantity: 1,
+                    status: 0,
+                    payment_date: ''
+                }
+                useChangeCart(request);
 
-            const data = (await useGetCart()).value
-            alert('Thêm vào giỏ hàng thành công')
+                const data = (await useGetCart()).value
+                alert('Thêm vào giỏ hàng thành công')
+            }else{
+                this.$router.push('/login')
+            }
         }
     }
 })
