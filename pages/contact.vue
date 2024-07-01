@@ -1,6 +1,24 @@
 <script setup lang="js">
+const
+    last_name = useState('contactLastName', () => ''),
+    first_name = useState('contactFirstName', () => ''),
+    mail = useState('contactMail', () => ''),
+    content = useState('contactContent', () => '');
 
-
+const handleSubmitForm = async () => {
+    const request = {
+        content: content.value,
+        last_name: last_name.value,
+        first_name: first_name.value,
+        email: mail.value
+    };
+    const response = await useSubmitContact(request);
+    if(response?.status == 'Success'){
+        alert('Đã gửi liên hệ của bạn!');
+    }else{
+        alert('Có lỗi xảy ra, vui lòng gửi lại!');
+    }
+}
 definePageMeta({
     layout: "no-layout",
 });
@@ -90,7 +108,7 @@ definePageMeta({
                                         for="grid-first-name">
                                         Họ
                                     </label>
-                                    <input
+                                    <input v-model="first_name"
                                         class="appearance-none block w-full bg-blue-200 placeholder:italic placeholder:text-sm placeholder:text-gray-800 border-none text-black rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                                         id="grid-first-name" type="text" placeholder="Nguyễn Văn">
                                 </div>
@@ -99,7 +117,7 @@ definePageMeta({
                                         for="grid-last-name">
                                         Tên
                                     </label>
-                                    <input
+                                    <input v-model="last_name"
                                         class="appearance-none block w-full bg-blue-200 placeholder:italic placeholder:text-sm placeholder:text-gray-800 text-black border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                                         id="grid-last-name" type="text" placeholder="Anh">
                                 </div>
@@ -110,9 +128,9 @@ definePageMeta({
                                         for="grid-password">
                                         Email
                                     </label>
-                                    <input
+                                    <input v-model="mail"
                                         class="appearance-none block w-full bg-blue-200 placeholder:italic placeholder:text-sm placeholder:text-gray-800 text-black border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                        id="grid-email" type="email" placeholder="mailcuaban@gmail.com">
+                                        id="grid-email" type="text" placeholder="mailcuaban@gmail.com">
                                 </div>
                             </div>
 
@@ -123,15 +141,16 @@ definePageMeta({
                                         Nội dung
                                     </label>
                                     <textarea rows="10" placeholder="Nội dung bạn muốn gửi cho SAMSENG"
+                                        v-model="content"
                                         class="appearance-none block w-full bg-blue-200 placeholder:italic placeholder:text-sm placeholder:text-gray-800 text-black border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"></textarea>
                                 </div>
                                 <div class="flex justify-between w-full px-3">
                                     <div>
 
                                     </div>
-                                    <button
+                                    <button @click="handleSubmitForm()"
                                         class="shadow bg-indigo-600 hover:bg-indigo-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-6 rounded"
-                                        type="submit">
+                                        type="button">
                                         Gửi cho SAMSENG
                                     </button>
                                 </div>

@@ -119,3 +119,26 @@ export const useCheckOut = async (request) => {
         .catch((error) => console.error(error));
 }
 
+
+
+export const useOrderCancel = async (att) => {
+    const BASE_URL = (await (useBaseURL())).value.baseURL
+
+    let data = null;
+
+    const requestOptions = {
+        method: "POST",
+        body: JSON.stringify(att),
+        redirect: "follow",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    };
+
+    await fetch(BASE_URL + "order-cancel", requestOptions)
+        .then((response) => response.json())
+        .then((result) => data = result)
+        .catch((error) => console.error(error));
+    return data;
+}
+

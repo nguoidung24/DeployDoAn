@@ -19,7 +19,7 @@
                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                               Số điện thoại:
                            </label>
-                           <input @change="(e) => handleChangeInput(e)" v-model="userName" autocomplete="off"
+                           <input v-model="userName" autocomplete="off"
                               type="text"
                               class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                               placeholder="84+ 987654321">
@@ -28,7 +28,7 @@
                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                               Mật khẩu:
                            </label>
-                           <input @change="(e) => handleChangeInput(e)" v-model="password" autocomplete="off"
+                           <input v-model="password" autocomplete="off"
                               type="password" placeholder="••••••••••••••••••••"
                               class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>
@@ -76,7 +76,7 @@
                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                               Số điện thoại:
                            </label>
-                           <input @change="(e) => handleChangeInput(e)" v-model="rUserName" autocomplete="off"
+                           <input v-model="rUserName" autocomplete="off"
                               type="text"
                               class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                               placeholder="84+ 987654321">
@@ -85,7 +85,7 @@
                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                               Mật khẩu:
                            </label>
-                           <input @change="(e) => handleChangeInput(e)" v-model="rPassword" autocomplete="off"
+                           <input v-model="rPassword" autocomplete="off"
                               type="password" placeholder="••••••••••••••••••••"
                               class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>
@@ -93,7 +93,7 @@
                            <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                               Nhập lại mật khẩu:
                            </label>
-                           <input @change="(e) => handleChangeInput(e)" v-model="rRPassword" autocomplete="off"
+                           <input v-model="rRPassword" autocomplete="off"
                               type="password" placeholder="••••••••••••••••••••"
                               class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>
@@ -170,7 +170,7 @@ const handleChangeInput = (e) => {
 const handleLogin = async (e) => {
    e.preventDefault();
    const isLogin = await useLogin(userName, password)
-   console.log(isLogin)
+   // console.log(isLogin)
    if (isLogin?.success) {
       setCookies(
          isLogin?.ssid,

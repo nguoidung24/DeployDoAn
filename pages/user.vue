@@ -108,9 +108,13 @@
                                                 (Đang kiểm tra thanh toán - Không quá 24h)</p>
                                         </div>
                                         <div>
-                                            <!-- <button v-if="`${tabActive}` == '1'"
+                                            <button v-if="`${tabActive}` == '1'" @click="handleOrderCancel(item)"
                                                 class="bg-red-500 mt-2 text-sm text-white px-3 py-2 rounded-lg ">
-                                                Hủy đơn - chua xong</button> -->
+                                                Hủy đơn
+                                            </button>
+                                        </div>
+                                        <div v-if="`${tabActive}` == '-1'">
+                                            <span class='italic'>Lý do hủy:</span> '{{ item?.note }}'
                                         </div>
                                         <div v-if="`${tabActive}` == '3'">
                                             <button @click="handleDisplayRating(item)" v-if="!item?.rating"
@@ -282,7 +286,7 @@ export default defineNuxtComponent({
                 '2': { text: 'Đang Giao', value: [] },
                 '3': { text: 'Đã Giao', value: [] },
                 '4': { text: 'Thất Bại', value: [] },
-                '-1': { text: 'Đơn bị hủy', value: [] },
+                '-1': { text: 'Đã hủy', value: [] },
             },
 
             user_name: '',
@@ -374,6 +378,32 @@ export default defineNuxtComponent({
                 return alert("Thất bại, có thể do số điện thoại trùng hoặc không thay đổi!");
             }
         },
+        async handleOrderCancel(item) {
+            const request = {
+                ids: item?.order_id
+            };
+            const response = await useOrderCancel(request);
+            if (response?.success) {
+                this.tab = await {
+                    '1': { text: 'Chờ Duyệt', value: [] },
+                    '2': { text: 'Đang Giao', value: [] },
+                    '3': { text: 'Đã Giao', value: [] },
+                    '4': { text: 'Thất Bại', value: [] },
+                    '-1': { text: 'Đã hủy', value: [] },
+                }
+
+                const data = await useCustomer();
+                data?.data?.map((item, index) => {
+                    this.tab[`${item?.status}`]?.value?.push(item);
+                });
+
+                return alert("Đã hủy đơn hàng thành công!");
+
+
+            } else {
+                return alert("Thất bại, vui lòng thử lại!");
+            }
+        },
         async handleRating(att) {
             if (Number(this.ratingVal) <= 5 && Number(this.ratingVal) >= 1) {
                 this.isLoading = true;
@@ -389,7 +419,7 @@ export default defineNuxtComponent({
                     '2': { text: 'Đang Giao', value: [] },
                     '3': { text: 'Đã Giao', value: [] },
                     '4': { text: 'Thất Bại', value: [] },
-                    '-1': { text: 'Đơn bị hủy', value: [] },
+                    '-1': { text: 'Đã hủy', value: [] },
                 }
 
                 const data = await useCustomer();
