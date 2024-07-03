@@ -283,7 +283,7 @@
             </main>
         </div>
         <div v-if="isLoading" class='text-center'>
-            loading.......
+            loading...
         </div>
         <div v-if="!isLoading && dataProduct.length == 0" class="text-center">
             Không có sản phẩm này - <NuxtLink to="/" class="text-blue-500">Trang Chủ</NuxtLink>
