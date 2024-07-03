@@ -14,7 +14,7 @@
                 <div class="container px-5 pb-3 pt-16 mx-auto">
                     <div class="lg:w-4/5 mx-auto flex flex-wrap justify-center">
                         <div class="lg:w-2/4 ">
-                            <div class="lg:px-32 px-10 w-full relative">
+                            <div class=" px-10 w-full relative">
                                 <figure class="pb-24 w-full">
                                     <img v-if="dataProduct[tabActive]?.images?.length" alt="ecommerce"
                                         class="h-80 mx-auto object-cover object-center rounded"
